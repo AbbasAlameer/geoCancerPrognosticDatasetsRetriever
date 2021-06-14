@@ -10,7 +10,7 @@ geo_CPDR can be used on any Linux or macOS machines. To run geo_CPDR, you need t
 
 By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. However, geo_CPDR will install it automatically on Ubuntu linux.
 # Data file
-The required input file is a GEO DataSets file obtainable as a download upon querying for any particular cancer (ex. “Bladder cancer”). 
+The required input file is a GEO DataSets file obtainable as a download, upon querying for any particular cancer (ex. “Bladder cancer”), from the <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO database</a>. 
 # Execution instructions
 Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in a particular directory in which geo_CPDR is present. Next run geo_CPDR with the following command:
 
@@ -23,7 +23,7 @@ The output file of geo_CPDR will be found in the ./CANCER_TYPE directory. Help i
 # License
 All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
 # Contact
-geo_CPDR was developed by <a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/index.htm">Abbas Alameer</a> (Bioinformatics and Molecular Modelling Group, <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a>).
+geo_CPDR was developed by <a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a> (Bioinformatics and Molecular Modelling Group, <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a>).
 
 # Support
 <address>For support of geo_CPDR, please email <a href="mailto:abbas.alameer@ku.edu.kw">Abbas Alameer.</a></address>
