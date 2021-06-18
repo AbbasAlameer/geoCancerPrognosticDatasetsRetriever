@@ -75,7 +75,7 @@ my $extra_count           = 0;
 my $filter2_count         = 0;
 my %simple_hash           = ();
 my ($cwd, $prog_path)     = (cwd()) x 2; #get path of the current working directory 		          
-($prog_path)			  = split(/bin/, "$cwd");
+($prog_path)		  = split(/bin/, "$cwd");
 
 
 #run start-up.
