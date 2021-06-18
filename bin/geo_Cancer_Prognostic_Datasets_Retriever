@@ -5,39 +5,43 @@
 ###############################################################################################################################
 #                                                                                                                             #
 # Gene Expression Omnibus (GEO): Cancer Prognostic Datasets Retriever                                                         #
-# ~    ~          ~              ~      ~          ~        ~                                                                 #                                                         
+# ~    ~          ~              ~      ~          ~        ~                                                                 #        
+#                                                                                                                             # 
 #                                                                                                                             #
+# geo_Cancer_Prognostic_Datasets_Retriever, version 1.0                                                                       #
+# -----------------------------------------------------                                                                       #
 #                                                                                                                             #
-# geo_CPDR.pl version 1.0                                                                                                     #                                                                                                     #
-# -----------------------                                                                                                     #
-#                                                                                                                             #
-# Last Update: 12/06/21                                                                                                       #
+# Last Update: 18/06/21                                                                                                       #
 #                                                                                                                             #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                         #
 #          Bioinformatics and Molecular Modelling Group,                                                                      #
-#                 Kuwait University                                                                                           #
+#                      Kuwait University                                                                                      #
 #                                                                                                                             #
 # Please email queries, suggestions, and possible bug information to the above author.                                        #
 #                                                                                                                             #
 # Brief Description:                                                                                                          #
 # ------------------                                                                                                          #
-# Gene Expression Omnibus (GEO): Cancer Prognostic Datasets Retriever (or geo_CPDR) is a Bioinformatics tool for prognostic   #
-# dataset retrieval from the GEO database. It requires an input file listing all GSE dataset entries for a specific cancer    #
-# (ex. Bladder cancer), obtained as a download from the GEO database. geo_CPDR functions by applying two heuristic filters to #
-# examine individual GSE dataset entries listed in the input file. The first filter (Prognostic title/abstract filter) flags  #
-# for prognostic keywords (ex. “prognosis” or “survival”) used by researchers and present in the title/abstract entries of a  # 
-# GSE dataset. If found, geo_CPDR retrieves those #flagged datasets. The second filter (Prognostic Signature filter) filters  # 
-# these datasets further by applying prognostic signature pattern matching (Perl regular expression signatures) to identify   #
-# if the GSE dataset is a likely prognostic dataset.                                                                          #
+#                                                                                                                             #
+# Gene Expression Omnibus (GEO) Cancer Prognostic Datasets Retriever is a Bioinformatics tool for cancer prognostic dataset   #
+# retrieval from the GEO database. It requires a GeoDatasets input file listing all GSE dataset entries for a specific cancer #
+# (ex. Bladder cancer), obtained as a download from the GEO database. This Bioinformatics tool functions by applying two      #
+# heuristic filters to examine individual GSE dataset entries listed in a GEO DataSets input file. The Prognostic text filter #
+# flags for prognostic keywords (ex. “prognosis” or “survival”) used by clinical science researchers and present in the       #
+# title/abstract entries of a GSE dataset. If found, this tool retrieves those flagged datasets. Next, the second filter      #
+# (Prognostic Signature filter) filters these datasets further by applying prognostic signature pattern matching              #
+# (Perl regular expression signatures) to identify if the GSE dataset is a likely prognostic dataset.                         #
 #                                                                                                                             #
 #                                                                                                                             #
-# The prerequisite for running this program in a UNIX or Linux environment is:-                                               #
-# -----------------------------------------------------------------------------                                               #
+# The prerequisite for running this program in a UNIX or Linux environment is:                                                #
+# ----------------------------------------------------------------------------                                                #
 #                                                                                                                             #
 # 1. cURL: If using a Ubuntu-based system, the program will assist the user in installing curl, otherwise manual installation #
 #          is required.                                                                                                       #
 #                                                                                                                             #
-# Program Usage: perl geo_Cancer_Prognostic_Datasets_Retriever -h [-f INPUT_GEO_FILE] [-c CANCER_TYPE] [-o OUTPUT_FILE]       #
+# Program Usage:                                                                                                              #
+# --------------                                                                                                              #
+#                                                                                                                             #
+# perl geo_Cancer_Prognostic_Datasets_Retriever -h [-f INPUT_GEO_FILE] [-c CANCER_TYPE] [-o OUTPUT_FILE]                      #
 #                                                                                                                             #
 ###############################################################################################################################
 
@@ -53,9 +57,9 @@ use Getopt::Std;
 
 
 #variables
-my %options 	           = (); #hash for storing command line switches and arguments
+my %options 	          = (); #hash for storing command line switches and arguments
 my $input_file;
-my $formatted_input_file = "formatted-input.dat";
+my $formatted_input_file  = "formatted-input.dat";
 my $cancer_type;
 my $output_file;
 my $line;
@@ -70,8 +74,8 @@ my $ftp_keyword_count     = 0;
 my $extra_count           = 0;
 my $filter2_count         = 0;
 my %simple_hash           = ();
-my $cwd                   = cwd(); #get path of the current working directory 		          
-
+my ($cwd, $prog_path)     = (cwd()) x 2; #get path of the current working directory 		          
+($prog_path)			  = split(/bin/, "$cwd");
 
 
 #run start-up.
@@ -161,7 +165,7 @@ Optional arguments:
 	}
 	
 	#Check for the presence of the input file.
-	unless (-e "$cwd/$input_file") {
+	unless (-e "$prog_path/data/$input_file") {
 		
 		print color ("red"), "Input file: $input_file was not found.\n", color("reset");
 		exit;
@@ -169,7 +173,7 @@ Optional arguments:
 	}
 }
 ############################ SUBROUTINE 3 #######################################################
-#This subroutine performs minor formatting of GEO input file to merge the title and abstract 
+#This subroutine performs minor formatting of a GEO input file to merge the title and abstract 
 #lines together to prevent the regex lines from missing potential keyword hits in the 'title' 
 #line.
 sub format_input {
@@ -180,8 +184,8 @@ sub format_input {
 	
 	print color ("green"), "Formatting Input: $input_file...", color("reset");
 	
-	open (IN, $raw_input) or die "Cannot open file for reformatting: $raw_input. $!.\n";
-	open (OUT, ">$out_file") or die "Cannot open file for writing data: $!\n";
+	open (IN, "$prog_path/data/$raw_input") or die "Cannot open file for reformatting: $raw_input. $!.\n";
+	open (OUT, '>', "$prog_path/data/$out_file") or die "Cannot open file for writing reformatted data: $out_file $!\n";
 	
 	while ($line = <IN>) {
 			
@@ -221,22 +225,21 @@ sub check_curl {
 	#if no curl binary was found, install it on Ubuntu/Ubuntu-based systems
 	if (!$check) {
 			
-			#check if current system is Ubuntu/or Ubuntu-based
-			my $ubuntu = qx{uname -a};
+		#check if current system is Ubuntu/or Ubuntu-based
+		my $ubuntu = qx{uname -a};
 			
-			if ($ubuntu=~ /.+ubuntu.+/ig) {
+		if ($ubuntu=~ /.+ubuntu.+/ig) {
 			
-				print color ("red"), "curl binary was not found: follow onscreen instructions/input your password for its installation...\n\n", color("reset");
-				system("sudo apt install curl"); #install curl
-				print "done\n";
+			print color ("red"), "curl binary was not found: follow onscreen instructions/input your password for its installation...\n\n", color("reset");
+			system("sudo apt install curl"); #install curl
+			print "done\n";
 				
-			} 
+		} 
 			
-			else { 
+		else { 
 				
-				print "curl is not found on this system: install it on your system.\n"; 
-				
-			}
+			print "curl is not found on this system: install it on your system.\n"; 
+		}
 			
 	}
 }
@@ -251,7 +254,7 @@ sub main {
 	print color ("green"), "Analyzing Input: $main_formatted_input_file file...\n", color("reset");
 
 	#open input file
-	open (FH, $main_formatted_input_file) or die "Cannot open file: $main_formatted_input_file $!\n";
+	open (FH, "$prog_path/data/$main_formatted_input_file") or die "Cannot open file: $main_formatted_input_file $!\n";
 
 	#open output file
 	open (FH2, ">$main_output_file") or die "Cannot open file for writing data: $!\n";
@@ -312,7 +315,7 @@ sub main {
 		
 		if ($flag) {
 				
-								       #FTP line main                        #GSE/GDS_code
+					      #FTP line main                              #GSE/GDS_code
 			if ($line =~ m/^FTP.+(ftp:\/\/ftp.ncbi.nlm.nih.gov\/geo\/.+\/.+\/)(.+)\//) {
 				
 				my $ftp_line1 = $1;
@@ -333,8 +336,8 @@ sub main {
 					
 				if ($prog_flag && $human_flag) { 
 					
-					print color ("yellow"), "Prognostic title/abstract filter: <Prognostic keywords found>\n", color("reset");
-					print FH2 "Prognostic title/abstract filter: <Prognostic keywords found>\n";
+					print color ("yellow"), "Prognostic Text: <Prognostic keywords found>\n", color("reset");
+					print FH2 "Prognostic Text filter: <Prognostic keywords found>\n";
 					
 					$prog_flag = 0; 
 					$human_flag = 0; 
@@ -392,19 +395,19 @@ sub main {
 	#print color ("green"), "done\n", color("reset");
 	print color ("green"), "Analysis complete.\n\n", color("reset");
 	
-	system ("mkdir $cancer_type\_Soft_files");
-	system ("rm $main_formatted_input_file");
+	system ("mkdir $cancer_type\_GEO-files");
+	system ("rm $prog_path\/data\/$main_formatted_input_file");
 	
 	print color ("green"), "===========================================================================\n", color("reset");
 	print FH2 "===========================================================================\n";
 	#print color ("green"), "Number of abstract entries with 'more...' in abstract: $more_count\n", color("reset");
 	#print FH2 "Number of abstract entries with 'more...' in abstract: $more_count\n";
-	#print color ("green"), "No. of abstract entries with 'more...' that had Prognostic title/abstract filter keywords: $extra_count\n", color("reset");
-	#print FH2 "No. of abstract entries with 'more...' that had Prognostic title/abstract filter keywords: $extra_count\n", color("reset");
-	#print color ("green"), "Prognostic title/abstract filter keywords found:\t$keyword_count\n", color("reset");
-	#print FH2 "Prognostic title/abstract filter keywords found:\t$keyword_count\n";
+	#print color ("green"), "No. of abstract entries with 'more...' that had Prognostic Text filter keywords: $extra_count\n", color("reset");
+	#print FH2 "No. of abstract entries with 'more...' that had Prognostic Text filter keywords: $extra_count\n", color("reset");
+	#print color ("green"), "Prognostic Text filter keywords found:\t$keyword_count\n", color("reset");
+	#print FH2 "Prognostic Text filter keywords found:\t$keyword_count\n";
 	print color ("green"), "Total prognostic datasets found: $filter2_count\nCheck ", color("reset");
-	print color ("blue"), "$main_output_file", color("reset");
+	print color ("blue"), "results\/$main_output_file", color("reset");
 	print color ("green"), " to see the results.\n", color("reset");
 	print FH2 "Total prognostic datasets found:\t$filter2_count\n";
 
@@ -417,13 +420,16 @@ sub main {
 	#clean up current directory
 	if (-e "$cwd/curl_log.txt") { 
 		
-		system ("mv *.soft curl_log.txt $input_file $output_file $cancer_type\_Soft_files"); 	
+		system ("mv *.soft curl_log.txt $cancer_type\_GEO-files"); 	
 	}
 	
-	else { 
+	elsif (-e glob("$cwd/*.soft")) {
 		
-		system ("mv $input_file $output_file $cancer_type\_Soft_files"); 
+		system ("mv *.soft $cancer_type\_GEO-files");
 	}
+	
+	#move current output directory to the 'results' directory
+	system("mv $cancer_type\_GEO-files $output_file ../results");
 }
 ############################ SUBROUTINE 6 #######################################################
 #This subroutine checks if the output file is empty. If it is, then defined GPL series were not 
@@ -517,8 +523,8 @@ sub soft_file_abstract_check {
 	
 	if ($wget_counter) { 
 		
-		print color ("yellow"), "Prognostic title/abstract filter: <Prognostic keywords found>\n", color("reset");
-		print FH2 "Prognostic title/abstract filter: <Prognostic keywords found>\n";
+		print color ("yellow"), "Prognostic Text filter: <Prognostic keywords found>\n", color("reset");
+		print FH2 "Prognostic Text filter: <Prognostic keywords found>\n";
 		
 		my %local_hash = prognostic_signature_finder($unzip_file);
 		
@@ -528,8 +534,8 @@ sub soft_file_abstract_check {
 		
 	} else {
 		
-		print color ("yellow"), "Prognostic title/abstract filter: <No prognostic keywords found>\n", color("reset");
-		print FH2 "Prognostic title/abstract filter: <No prognostic keywords found>\n";
+		print color ("yellow"), "Prognostic Text filter: <No prognostic keywords found>\n", color("reset");
+		print FH2 "Prognostic Text filter: <No prognostic keywords found>\n";
 		
 		return 0;
 	}
