@@ -18,7 +18,7 @@ Obtain a GeoDatasets input file for a specific cancer (for example using the sea
 
 The output file of geo_CPDR will be found in the ./CANCER_TYPE directory. Help information can be read by typing the following command:  
 
-<p><ul>geo_CPDR --help</ul></p>
+<p><ul>geo_Cancer_Prognostic_Datasets_Retriever --help</ul></p>
 
 # License
 All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
