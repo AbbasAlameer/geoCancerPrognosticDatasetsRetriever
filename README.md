@@ -9,17 +9,22 @@ geo_Cancer_Prognostic_Datasets_Retriever can be used on any Linux or macOS machi
 
 <p><ul><li>Perl (version 5.30.0 or later)</li></ul></p>
 <p><ul><li>cURL (version 7.68.0 or later)</li></ul></p>
-By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. However, it will be installed automatically on Ubuntu linux by geo_Cancer_Prognostic_Datasets_Retriever.
+By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Ubuntu linux by geo_Cancer_Prognostic_Datasets_Retriever.
 
 ## Data file
 The required input file is a GEO DataSets file obtainable as a download, upon querying for any particular cancer (ex. “Bladder cancer”), from the <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO database</a>. 
 
 ## Execution instructions
-Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in a particular directory in which geo_Cancer_Prognostic_Datasets_Retriever is present. Next run geo_Cancer_Prognostic_Datasets_Retriever with the following command:
+Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run geo_Cancer_Prognostic_Datasets_Retriever with the following command:
 
-<p><ul>geo_Cancer_Prognostic_Datasets_Retriever -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul></p>
+<p>
+<ul>geo_Cancer_Prognostic_Datasets_Retriever -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul>
+<ul>Ex. geo_Cancer_Prognostic_Datasets_Retriever -f bladder_cancer_GEO.txt -c bladder_cancer -out bladder_cancer.out
+</p>
 
-The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the ./CANCER_TYPE directory. Help information can be read by typing the following command:  
+The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/results/' directory.<br>
+
+Help information can be read by typing the following command:  
 
 <p><ul>geo_Cancer_Prognostic_Datasets_Retriever --help</ul></p>
 
@@ -29,7 +34,9 @@ All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-
 ## Contact
 <b>geo_Cancer_Prognostic_Datasets_Retriever was developed by:</b><br>
 <p>
-<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a> (Bioinformatics and Molecular Modelling Group, <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a>)<br>
+<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a><br>
+Bioinformatics and Molecular Modelling Group,<br> 
+<a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a><br>
 Email: abbas.alameer(AT)ku.edu.kw
 </p>
 
