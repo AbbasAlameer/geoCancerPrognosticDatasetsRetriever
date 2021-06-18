@@ -30,7 +30,7 @@ All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-
 
 ## Contact
 <p><b>geo_Cancer_Prognostic_Datasets_Retriever was developed by:</b><br>
-<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a><br>
+<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer,</a><br>
 Bioinformatics and Molecular Modelling Group,<br> 
 <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a><br>
 Email: abbas.alameer(AT)ku.edu.kw</p>
