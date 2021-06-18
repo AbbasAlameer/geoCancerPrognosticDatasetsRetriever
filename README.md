@@ -27,9 +27,11 @@ The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the
 All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
 
 ## Contact
-geo_Cancer_Prognostic_Datasets_Retriever was developed by:<br> 
-<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a> (Bioinformatics Group, <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University)</a><br>
+<b>geo_Cancer_Prognostic_Datasets_Retriever was developed by:</b><br>
+<p>
+<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a> (Bioinformatics and Molecular Modelling Group, <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a>)<br>
 Email: abbas.alameer(AT)ku.edu.kw
+</p>
 
 ## Support
 <address>Please email <a href="mailto:abbas.alameer@ku.edu.kw">Abbas Alameer</a> to obtain support for geo_Cancer_Prognostic_Datasets_Retriever.</address>
