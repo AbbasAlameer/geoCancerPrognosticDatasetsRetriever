@@ -1,0 +1,373 @@
+
+1. The secretome of skin cancer cells activates the mTOR/MYC pathway in healthy keratinocytes and converts them into tumorigenic cells
+(Submitter supplied) Cutaneous squamous cell carcinoma (cSCC) is the most aggressive tumor among non-melanoma skin cancers (NMSC), showing a high potential for local invasion and metastasis. In recent years, the incidence of cSCC has increased tremendously due to increased UV exposure. The secretome of cancer cells is currently the focus of many studies in order to identify new marker proteins for different types of cancer and to investigate its influence on the tumor microenvironment. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by high throughput sequencing
+Platform: GPL18460 12 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE132nnn/GSE132215/
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=PRJNA546533
+Series		Accession: GSE132215	ID: 200132215
+
+2. UVB drives different stages of epigenome alterations during progression of skin cancer [Bisulfite-seq]
+(Submitter supplied) Exposure to UVB irradiation results in multitude of cellular responses including generation of reactive oxygen species (ROS) and DNA damage and is responsible for non-melanoma skin cancers (NMSCs). Although genetic mutation is well documented, the epi-mutation, the alteration in epigenetics, remains elusive. DNA methylation is a stable and heritable epigenetic change in the control of gene expression. more...
+Organism:	Mus musculus
+Type:		Methylation profiling by high throughput sequencing
+Platform: GPL19057 16 Samples
+FTP download: GEO (COV) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE122nnn/GSE122226/
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=PRJNA504025
+Series		Accession: GSE122226	ID: 200122226
+
+3. UVB drives different stages of epigenome alterations during progression of skin cancer [RNA-Seq]
+(Submitter supplied) Exposure to UVB irradiation results in multitude of cellular responses including generation of reactive oxygen species (ROS) and DNA damage and is responsible for non-melanoma skin cancers (NMSCs). Although genetic mutation is well documented, the epi-mutation, the alteration in epigenetics, remains elusive. DNA methylation is a stable and heritable epigenetic change in the control of gene expression. more...
+Organism:	Mus musculus
+Type:		Expression profiling by high throughput sequencing
+Platform: GPL19057 16 Samples
+FTP download: GEO (CSV) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE122nnn/GSE122225/
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=PRJNA504024
+Series		Accession: GSE122225	ID: 200122225
+
+4. Molecular profiling of immune activation associated with regression of melanoma metastases induced by diphencyprone
+(Submitter supplied) The purpose of this study was to treat cutaneous melanoma metastases with topical DPCP, and then to comprehensively study the induced immune responses associated with tumor regression.
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Platform: GPL570 31 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE82nnn/GSE82105/
+Series		Accession: GSE82105	ID: 200082105
+
+5. Molecular classification of non-melanoma skin cancer by gene expression profiling
+(Submitter supplied) Non-melanoma skin cancers (NMSC) including basal cell carcinoma (BCC) and squamous cell carcinoma (SCC) are more common kinds of skin cancer. Although these tumors share common pathological and clinical features, their similarity and heterogeneity at molecular levels are not fully elaborated yet. Here, by performing comparative analysis of gene expression profiling of BCC, SCC, and normal skin tissues, we could classify the BCC into three subtypes of classical, SCC-like, and normal-like BCCs. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Platform: GPL10558 26 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE53nnn/GSE53462/
+Series		Accession: GSE53462	ID: 200053462
+
+6. Novel Immunotherapy-Induced Tertiary Lymphoid Aggregates Accumulate as Intratumoral Nodal Structures of Immune Regulation in Pancreatic Cancer
+(Submitter supplied) Immunotherapy provides an alternative approach for cancer treatment.  However, in-depth analyses of the effects of immunotherapy on the tumor microenvironment (TME) have not been conducted in non-melanoma tumors. Here we describe changes in the pancreatic ductal adenocarcinoma (PDAC) TME following immunotherapy treatment, and show for the first time that vaccine-based immunotherapy directly alters the TME, inducing neogenesis of tertiary lymphoid structures that convert immunologically quiescent tumors into immunologically active tumors. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Platform: GPL570 20 Samples
+FTP download: GEO (CEL, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE52nnn/GSE52171/
+Series		Accession: GSE52171	ID: 200052171
+
+7. Genome-wide transcriptome profiling of SK-Mel-28, UACC-62 and HCT-116 cells stably expressing scrambled shRNA and RAB7 shRNA
+(Submitter supplied) Purpose: Asess the transcritpional changes induced upon RAB7 knock-down in melanoma (SK-Mel-28 and UACC-62) and in colon cancer (HCT-116) cell lines. Methods: mRNA profiles of tumor cell lines (SK-Mel-28, UACC-62, HCT-116) stably expressing scrambled shRNA or RAB7 shRNA (harvested at day 3 after lentiviral infection) were generated by deep sequencing, using three biological replicates per condition. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by high throughput sequencing
+Platform: GPL10999 18 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE42nnn/GSE42735/
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=PRJNA182963
+Series		Accession: GSE42735	ID: 200042735
+
+8. Intense THz pulses down-regulate genes associated with skin cancer and psoriasis: a new therapeutic avenue?
+(Submitter supplied) We show that exposure of artificial human skin tissue to intense, picosecond-duration THz pulses affects expression levels of numerous genes associated with non-melanoma skin cancers, psoriasis and atopic dermatitis. Genes affected by intense THz pulses include nearly half of the epidermal differentiation complex (EDC) members. EDC genes, which are mapped to the chromosomal human region 1q21, encode for proteins that partake in epidermal differentiation and are often overexpressed in conditions such as psoriasis and skin cancer. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Platform: GPL13938 12 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE48nnn/GSE48586/
+Series		Accession: GSE48586	ID: 200048586
+
+9. Spontaneous SCC induced by the somatic inactivation of Rb1 and Trp53 tumor suppressors in mouse stratified epithelia
+(Submitter supplied) The squamous cell carcinomas represent the aggressive type of non melanoma skin cancer, the most frequent malignancy among human population. We have studied here the possible relationship between these two pathways in skin using epidermal-specific mutant mice. Loss of p53, but not pRb, produces spontaneous tumor development, indicating that, contrary to pRb, p53 is the predominant tumor suppressor acting in mouse epidermis. more...
+Organism:	Mus musculus
+Type:		Expression profiling by array
+Platform: GPL339 8 Samples
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE9nnn/GSE9144/
+Series		Accession: GSE9144	ID: 200009144
+
+10. Novel Molecular Markers for non-melanoma skin cancer
+(Submitter supplied) normal skin (no), actinic keratosis (ak), and squamous cell carcinoma (scc) of the skin were examined:   Carcinogenesis is a multi-step process indicated by several genes up- or down-regulated during tumor progression. The type and number of genes involved in non-melanoma skin cancer (NMSC) are still unclear. This study examined and identified different expressed genes in NMSC. Fifteen snap-frozen biopsies of five immunosuppressed organ-transplanted recipients each normal skin, actinic keratosis (AK) and invasive squamous cell carcinoma (SCC) were analysed. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Dataset: GDS2200 Platform: GPL96 15 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE2nnn/GSE2503/
+Series		Accession: GSE2503	ID: 200002503
+
+11. Non-melanoma skin cancer
+Analysis of normal skin, actinic keratotic (AK) lesion, and squamous cell carcinoma (SCC) tumor biopsies from 5 patients with non-melanoma skin cancer (NMSC). Results provide insight into the molecular pathogenesis of NMSC.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 3 disease state sets
+Platform: GPL96 Series: GSE2503 15 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS2nnn/GDS2200/
+DataSet		Accession: GDS2200	ID: 2200
+
+12. Whole-genome expression profiling of melanoma progression.
+(Submitter supplied) To gain insights into the genetic profile of every stage of the melanoma progression pathway, and to determine to what extent these profiles are similar or distinct, we performed whole-genome expression profiling of tissue specimens representing normal skin, benign and atypical nevi, and early and advanced-stage melanomas. The results of this study provide first-time evidence that significant molecular changes occur distinctly at the border of/transition from melanoma in situ to primary melanoma, and that genes involved in mitotic cell cycle regulation and cell proliferation constitute the two leading categories of genes associated with these changes. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by array
+Dataset: GDS1989 Platform: GPL570 18 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE4nnn/GSE4587/
+Series		Accession: GSE4587	ID: 200004587
+
+13. Melanoma progression
+Analysis of tissue specimens representing benign nevus, atypical nevus, melanoma in situ, vertical growth phase (VGP) melanoma, and metastatic growth phase (MGP) melanoma. Results identify expression signatures that distinguish benign and atypical nevi and melanomas in situ from VGPs and MGPs.
+Organism:	Homo sapiens
+Type:		Expression profiling by array, count, 7 disease state, 4 specimen sets
+Platform: GPL570 Series: GSE4587 18 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS1nnn/GDS1989/
+DataSet		Accession: GDS1989	ID: 1989
+
+14. [HG-U133A] Affymetrix Human Genome U133A Array
+(Submitter supplied) Affymetrix submissions are typically submitted to GEO using the GEOarchive method described at http://www.ncbi.nlm.nih.gov/projects/geo/info/geo_affy.html  June 03, 2009: annotation table updated with netaffx build 28 June 08, 2012: annotation table updated with netaffx build 32 June 24, 2016: annotation table updated with netaffx build 35 Protocol: see manufacturer's web site  The U133 set includes 2 arrays with a total of 44928 entries and was indexed 29-Jan-2002. more...
+Organism:	Homo sapiens
+364 DataSets 1121 Series 11 Related Platforms 42179 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/platforms/GPLnnn/GPL96/
+Platform	Accession: GPL96	ID: 100000096
+
+15. Non-melanoma skin cancer PS_022
+Organism:	Homo sapiens
+Source name:	NORMAL
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294037	ID: 301294037
+
+16. Non-melanoma skin cancer PS_052
+Organism:	Homo sapiens
+Source name:	NORMAL
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294036	ID: 301294036
+
+17. Non-melanoma skin cancer PS_046
+Organism:	Homo sapiens
+Source name:	NORMAL
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294035	ID: 301294035
+
+18. Non-melanoma skin cancer PS_066
+Organism:	Homo sapiens
+Source name:	NORMAL
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294034	ID: 301294034
+
+19. Non-melanoma skin cancer PS_040
+Organism:	Homo sapiens
+Source name:	NORMAL
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294033	ID: 301294033
+
+20. Non-melanoma skin cancer PS_055
+Organism:	Homo sapiens
+Source name:	SCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294032	ID: 301294032
+
+21. Non-melanoma skin cancer PS_065
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294031	ID: 301294031
+
+22. Non-melanoma skin cancer PS_051
+Organism:	Homo sapiens
+Source name:	SCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294030	ID: 301294030
+
+23. Non-melanoma skin cancer PS_063
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294029	ID: 301294029
+
+24. Non-melanoma skin cancer PS_047
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294028	ID: 301294028
+
+25. Non-melanoma skin cancer PS_061
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294027	ID: 301294027
+
+26. Non-melanoma skin cancer PS_045
+Organism:	Homo sapiens
+Source name:	SCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294026	ID: 301294026
+
+27. Non-melanoma skin cancer PS_059
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294025	ID: 301294025
+
+28. Non-melanoma skin cancer PS_039
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294024	ID: 301294024
+
+29. Non-melanoma skin cancer PS_057
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294023	ID: 301294023
+
+30. Non-melanoma skin cancer PS_037
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294022	ID: 301294022
+
+31. Non-melanoma skin cancer PS_031
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294021	ID: 301294021
+
+32. Non-melanoma skin cancer PS_029
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294020	ID: 301294020
+
+33. Non-melanoma skin cancer PS_013
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294019	ID: 301294019
+
+34. Non-melanoma skin cancer PS_006
+Organism:	Homo sapiens
+Source name:	SCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294018	ID: 301294018
+
+35. Non-melanoma skin cancer PS_023
+Organism:	Homo sapiens
+Source name:	SCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294017	ID: 301294017
+
+36. Non-melanoma skin cancer PS_004
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294016	ID: 301294016
+
+37. Non-melanoma skin cancer PS_021
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294015	ID: 301294015
+
+38. Non-melanoma skin cancer PS_002
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294014	ID: 301294014
+
+39. Non-melanoma skin cancer PS_019
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294013	ID: 301294013
+
+40. Non-melanoma skin cancer PS_001
+Organism:	Homo sapiens
+Source name:	BCC
+Platform: GPL10558 Series: GSE53462 
+Sample		Accession: GSM1294012	ID: 301294012
+
+41. cDNA scc 14
+Organism:	Homo sapiens
+Source name:	scc_14
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47626	ID: 300047626
+
+42. cDNA scc 11
+Organism:	Homo sapiens
+Source name:	scc_11
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47625	ID: 300047625
+
+43. cDNA scc 07
+Organism:	Homo sapiens
+Source name:	scc_07
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47624	ID: 300047624
+
+44. cDNA scc 06
+Organism:	Homo sapiens
+Source name:	scc_06
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47623	ID: 300047623
+
+45. cDNA scc 01
+Organism:	Homo sapiens
+Source name:	scc_01
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47622	ID: 300047622
+
+46. cDNA no 22
+Organism:	Homo sapiens
+Source name:	no_22
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47621	ID: 300047621
+
+47. cDNA no 21
+Organism:	Homo sapiens
+Source name:	no_21
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47620	ID: 300047620
+
+48. cDNA no 19
+Organism:	Homo sapiens
+Source name:	no_19
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47619	ID: 300047619
+
+49. cDNA no 18
+Organism:	Homo sapiens
+Source name:	no_18
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47618	ID: 300047618
+
+50. cDNA no 17
+Organism:	Homo sapiens
+Source name:	no_17
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47617	ID: 300047617
+
+51. cDNA no 02+05+08
+Organism:	Homo sapiens
+Source name:	no_02+05+08
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47616	ID: 300047616
+
+52. cDNA ak 12
+Organism:	Homo sapiens
+Source name:	ak_12
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47615	ID: 300047615
+
+53. cDNA ak 09+15
+Organism:	Homo sapiens
+Source name:	ak_09+15
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47614	ID: 300047614
+
+54. cDNA ak 04
+Organism:	Homo sapiens
+Source name:	ak 04
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47613	ID: 300047613
+
+55. cDNA ak 03
+Organism:	Homo sapiens
+Source name:	ak 03
+Platform: GPL96 Series: GSE2503 Dataset: GDS2200 
+Sample		Accession: GSM47612	ID: 300047612
+
+56. NS2
+Organism:	Homo sapiens
+Source name:	normal skin
+Platform: GPL570 Series: GSE4587 Dataset: GDS1989 
+Sample		Accession: GSM102683	ID: 300102683
+
+57. NS1
+Organism:	Homo sapiens
+Source name:	normal skin
+Platform: GPL570 Series: GSE4587 Dataset: GDS1989 
+Sample		Accession: GSM102682	ID: 300102682
