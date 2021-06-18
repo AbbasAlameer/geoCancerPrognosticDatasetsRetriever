@@ -32,4 +32,4 @@ geo_Cancer_Prognostic_Datasets_Retriever was developed by:<br>
 Email: abbas.alameer(AT)ku.edu.kw
 
 ## Support
-<address>Please email <a href="mailto:abbas.alameer@ku.edu.kw">Abbas Alameer</a> for support of geo_Cancer_Prognostic_Datasets_Retriever.</address>
+<address>Please email <a href="mailto:abbas.alameer@ku.edu.kw">Abbas Alameer</a> to obtain support for geo_Cancer_Prognostic_Datasets_Retriever.</address>
