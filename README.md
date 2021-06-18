@@ -15,7 +15,7 @@ By default, Perl is installed on all Linux or macOS operating systems. Likewise,
 The required input file is a GEO DataSets file obtainable as a download, upon querying for any particular cancer (ex. “Bladder cancer”), from the <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO database</a>. 
 
 ## Execution instructions
-Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run geo_Cancer_Prognostic_Datasets_Retriever with the following command:
+Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run it with the following command:
 
 <p>
 <ul>geo_Cancer_Prognostic_Datasets_Retriever -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul>
