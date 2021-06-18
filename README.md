@@ -23,7 +23,7 @@ The output file of geo_CPDR will be found in the ./CANCER_TYPE directory. Help i
 ## License
 All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
 ## Contact
-geo_CPDR was developed by <a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer (abbas.alameer(AT)ku.edu.kw)</a> (Bioinformatics and Molecular Modelling Group, <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a>).
+geo_CPDR was developed by <a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a> (abbas.alameer(AT)ku.edu.kw) at the Bioinformatics and Molecular Modelling Group of <a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a>.
 
 ## Support
 <address>For support of geo_CPDR, please email <a href="mailto:abbas.alameer@ku.edu.kw">Abbas Alameer.</a></address>
