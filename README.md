@@ -14,7 +14,7 @@ The required input file is a GEO DataSets file obtainable as a download, upon qu
 # Execution instructions
 Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in a particular directory in which geo_CPDR is present. Next run geo_CPDR with the following command:
 
-<p><ul>geo_CPDR -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul></p>
+<p><ul>geo_Cancer_Prognostic_Datasets_Retriever -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul></p>
 
 The output file of geo_CPDR will be found in the ./CANCER_TYPE directory. Help information can be read by typing the following command:  
 
