@@ -6,8 +6,8 @@ GEO Cancer Prognostic Datasets Retriever is a Bioinformatics tool for cancer pro
 ## Installation
 geo_Cancer_Prognostic_Datasets_Retriever can be used on any Linux or macOS machines. To run the prgram, you need to have the following programs installed on your computer:
 
-<p><ul><li>Perl (version 5.30.0 or later)</li></ul></p>
-<p><ul><li>cURL (version 7.68.0 or later)</li></ul></p>
+<p><ul><li><b>Perl</b> (version 5.30.0 or later)</li></ul></p>
+<p><ul><li><b>cURL</b> (version 7.68.0 or later)</li></ul></p>
 By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Ubuntu linux by geo_Cancer_Prognostic_Datasets_Retriever.
 
 ## Data file
@@ -16,8 +16,20 @@ The required input file is a GEO DataSets file obtainable as a download, upon qu
 ## Execution instructions
 Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next, navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run it with the following command:
 
-<ul>geo_Cancer_Prognostic_Datasets_Retriever -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul>
-<ul>Ex. `./geo_Cancer_Prognostic_Datasets_Retriever -f bladder_cancer_GEO.txt -c bladder_cancer -o bladder_cancer.out`</ul>
+```diff
+`geo_Cancer_Prognostic_Datasets_Retriever -h [-f or -d INPUT_GEO_FILE] [-p PLATFORM_CODES] [-c CANCER_TYPE] [-o OUTPUT_FILE]`
+```
+
+If a GeoDatasets input file for a cancer is present, run this command:
+
+```diff
+./geo_Cancer_Prognostic_Datasets_Retriever -f bladder_cancer_GEO.txt -p "GPL570 GPL97 GPL96" -c bladder_cancer -o bladder_cancer.out
+```
+Alternatively, If downloading a GeoDatasets input file for a cancer, run this command:
+
+```diff
+./geo_Cancer_Prognostic_Datasets_Retriever -d "bladder cancer" -p "GPL570 GPL97 GPL96" -c bladder_cancer -o bladder_cancer.out
+```
 
 The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/results/' directory.
 
