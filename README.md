@@ -13,14 +13,15 @@ By default, Perl is installed on all Linux or macOS operating systems. Likewise,
 ## Data file
 The required input file is a GEO DataSets file obtainable as a download, upon querying for any particular cancer (ex. “Bladder cancer”), from the <a href="https://www.ncbi.nlm.nih.gov/gds/">GEO DataSets</a>.
 
-Steps to manually download a GeoDatasets cancer input file:
+<b>Steps to manually download a GeoDatasets cancer input file:</b>
 
-1. Visit the GeoDatasets database.
-2. Type "bladder cancer" in the search box and hit enter.
-3. From the results page click on "Send to", then select "File" in the "Choose Destination" section of the drop-down menu.
-4. Next, click on "Create file" of the same drop-down menu.
-5. When prompted, save the file.
-6. The downloaded GeoDatasets input file can be renamed into something more descriptive (ex. bladder_cancer_GEO.txt).
+<b>1. Visit the GeoDatasets database and type "bladder cancer" in the search box and hit enter</b>
+![alt text](https://github.com/AbbasAlameer/geo_Cancer_Prognostic_Datasets_Retriever/blob/a3ffb536a60efdf96f8d495d2863136896f62f87/images/Page_1.png?raw=true)
+<b>2. From the results page click on "Send to", then select "File" in the "Choose Destination" section of the drop-down menu. Finally, click on "Create file" of the same drop-down menu</b>
+![alt text](https://github.com/AbbasAlameer/geo_Cancer_Prognostic_Datasets_Retriever/blob/a3ffb536a60efdf96f8d495d2863136896f62f87/images/Page_3.png?raw=true)
+<b>3. When prompted, save the file</b>
+![alt text](https://github.com/AbbasAlameer/geo_Cancer_Prognostic_Datasets_Retriever/blob/a3ffb536a60efdf96f8d495d2863136896f62f87/images/Page_4.png?raw=true)
+<b>4. The downloaded GeoDatasets input file can be renamed into something more descriptive (ex. bladder_cancer_GEO.txt)</b>
 
 ## Execution instructions
 Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next, navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run it with the following command:
