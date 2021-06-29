@@ -11,7 +11,16 @@ geo_Cancer_Prognostic_Datasets_Retriever can be used on any Linux or macOS machi
 By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Ubuntu linux by geo_Cancer_Prognostic_Datasets_Retriever.
 
 ## Data file
-The required input file is a GEO DataSets file obtainable as a download, upon querying for any particular cancer (ex. “Bladder cancer”), from the <a href="https://www.ncbi.nlm.nih.gov/gds/">GEO DataSets</a>. 
+The required input file is a GEO DataSets file obtainable as a download, upon querying for any particular cancer (ex. “Bladder cancer”), from the <a href="https://www.ncbi.nlm.nih.gov/gds/">GEO DataSets</a>.
+
+Steps to manually download a GeoDatasets cancer input file:
+
+1. Visit the GeoDatasets database.
+2. Type "bladder cancer" in the search box and hit enter.
+3. From the results page click on "Send to", then select "File" in the "Choose Destination" section of the drop-down menu.
+4. Next, click on "Create file" of the same drop-down menu.
+5. When prompted, save the file.
+6. The downloaded GeoDatasets input file can be renamed into something more descriptive (ex. bladder_cancer_GEO.txt).
 
 ## Execution instructions
 Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next, navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run it with the following command:
