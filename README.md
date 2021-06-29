@@ -17,7 +17,7 @@ The required input file is a GEO DataSets file obtainable as a download, upon qu
 Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next, navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run it with the following command:
 
 <ul>geo_Cancer_Prognostic_Datasets_Retriever -f [INPUT_GEO_FILE] -c [CANCER_TYPE] -o [OUTPUT_FILE]</ul>
-<ul>Ex. geo_Cancer_Prognostic_Datasets_Retriever -f bladder_cancer_GEO.txt -c bladder_cancer -out bladder_cancer.out</ul>
+<ul>Ex. `./geo_Cancer_Prognostic_Datasets_Retriever -f bladder_cancer_GEO.txt -c bladder_cancer -o bladder_cancer.out`</ul>
 
 The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/results/' directory.
 
