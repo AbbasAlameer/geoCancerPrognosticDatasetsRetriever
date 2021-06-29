@@ -33,11 +33,26 @@ Alternatively, If downloading a GeoDatasets input file for a cancer, run this co
 
 The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/results/' directory.
 
-<p> Help information can be read by typing the following command:</p>  
+<p>Help information can be read by typing the following command:</p>  
 
 ```diff
 ./geo_Cancer_Prognostic_Datasets_Retriever --help
 ```
+
+<p>This command will print the following instructions:</p>
+
+```diff
+Usage: geo_Cancer_Prognostic_Datasets_Retriever -h [-f or -d INPUT_GEO_FILE] [-p PLATFORM_CODES] [-c CANCER_TYPE] [-o OUTPUT_FILE]
+
+Mandatory arguments:
+  INPUT_GEO_FILE        query GEO datasets file or GEO datasets search query
+  PLATFORM CODES        list of GPL platform codes
+  CANCER_TYPE           cancer type
+  OUTPUT_FILE           name of file which will contain the output
+
+  Optional arguments:
+  -h                    show help message and exit
+  ```
 
 ## License
 All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
