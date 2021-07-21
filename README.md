@@ -20,7 +20,7 @@ Navigate to the '/bin/' in which geoCancerPrognosticDatasetsRetriever is found a
 `geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES] [-o OUTPUT_FILE]`
 ```
 
-An example command using "bladder cancer" as a query:
+An example command using "bladder cancer" as a query: 
 
 ```diff
 ./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96" -o bladder_cancer.out
@@ -52,11 +52,8 @@ Mandatory arguments:
 All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
 
 ## Contact
-<p><b>geoCancerPrognosticDatasetsRetriever was developed by:</b><br>
+<p>geoCancerPrognosticDatasetsRetriever was developed by:<br>
 <a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a>,<br>
 Bioinformatics and Molecular Modelling Group,<br> 
-<a href="http://kuweb.ku.edu.kw/ku/index.htm">Kuwait University</a><br>
+Kuwait University<br>
 Email: abbas.alameer(AT)ku.edu.kw</p>
-
-## Support
-<address>Please email <a href="mailto:abbas.alameer@ku.edu.kw">Abbas Alameer</a> to obtain support for geoCancerPrognosticDatasetsRetriever.</address>
