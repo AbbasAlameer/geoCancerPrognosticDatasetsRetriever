@@ -228,7 +228,7 @@ sub download_geo_input {
     my $data     = get($url);
 
     #add date & time to current input file download
-	my $geo_datasets_file = "$cancer\_cancer_GEO_$current_date_time.txt"; 
+    my $geo_datasets_file = "$cancer\_cancer_GEO_$current_date_time.txt"; 
     
     open(FH, ">$prog_path/data/$geo_datasets_file") or die "Cannot open file for writing the GDS input:$!\n";
     binmode(FH, ":utf8");
