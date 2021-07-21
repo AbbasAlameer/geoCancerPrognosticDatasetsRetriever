@@ -20,7 +20,7 @@ Navigate to the '/bin/' in which geoCancerPrognosticDatasetsRetriever is found a
 `geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES] [-o OUTPUT_FILE]`
 ```
 
-An example command is using "bladder cancer" as a query:
+An example command using "bladder cancer" as a query:
 
 ```diff
 ./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96" -o bladder_cancer.out
