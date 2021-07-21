@@ -14,21 +14,16 @@ By default, Perl is installed on all Linux or macOS operating systems. Likewise,
 The required input file is a GEO DataSets file obtainable as a download  from <a href="https://www.ncbi.nlm.nih.gov/gds/">GEO DataSets</a>, upon querying for any particular cancer (ex. “Bladder cancer”) in geoCancerPrognosticDatasetsRetriever.
 
 ## Execution instructions
-Obtain a GeoDatasets input file for a specific cancer (for example using the search query “Bladder cancer”) and save it in the '/data/' directory. Next, navigate to the '/bin/' in which geo_Cancer_Prognostic_Datasets_Retriever is found and run it with the following command:
+Navigate to the '/bin/' in which geoCancerPrognosticDatasetsRetriever is found and run it with the following command:
 
 ```diff
-`geoCancerPrognosticDatasetsRetriever -h [-f or -d INPUT_GEO_FILE] [-p PLATFORM_CODES] [-c CANCER_TYPE] [-o OUTPUT_FILE]`
+`geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES] [-o OUTPUT_FILE]`
 ```
 
-If a GeoDatasets input file for a cancer is present, run this command:
+An example command is using "bladder cancer" as a query:
 
 ```diff
-./geoCancerPrognosticDatasetsRetriever -f bladder_cancer_GEO.txt -p "GPL570 GPL97 GPL96" -c bladder_cancer -o bladder_cancer.out
-```
-Alternatively, If downloading a GeoDatasets input file for a cancer, run this command:
-
-```diff
-./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96" -c bladder_cancer -o bladder_cancer.out
+./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96" -o bladder_cancer.out
 ```
 
 The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/results/' directory.
@@ -36,18 +31,17 @@ The output file of geo_Cancer_Prognostic_Datasets_Retriever will be found in the
 <p>Help information can be read by typing the following command:</p>  
 
 ```diff
-./geoCancerPrognosticDatasetsRetriever --help
+./geoCancerPrognosticDatasetsRetriever -h
 ```
 
 <p>This command will print the following instructions:</p>
 
 ```diff
-Usage: geoCancerPrognosticDatasetsRetriever -h [-f or -d INPUT_GEO_FILE] [-p PLATFORM_CODES] [-c CANCER_TYPE] [-o OUTPUT_FILE]
+Usage: geoCancerPrognosticDatasetsRetriever -h [-d CANCER_TYPE] [-p PLATFORM_CODES] [-o OUTPUT_FILE]
 
 Mandatory arguments:
-  INPUT_GEO_FILE        query GEO datasets file or GEO datasets search query
+  CANCER TYPE           GEO datasets search query
   PLATFORM CODES        list of GPL platform codes
-  CANCER_TYPE           cancer type
   OUTPUT_FILE           name of file which will contain the output
 
   Optional arguments:
