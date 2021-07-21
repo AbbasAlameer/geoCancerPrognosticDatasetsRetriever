@@ -8,10 +8,10 @@
 # ~    ~          ~              ~      ~          ~        ~                                                                    #        
 #                                                                                                                                # 
 #                                                                                                                                #
-# geo_Cancer_Prognostic_Datasets_Retriever, version 1.0                                                                          #
+# geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 29/06/21                                                                                                          #
+# Last Update: 21/07/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -41,7 +41,7 @@
 # Program Usage:                                                                                                                 #
 # --------------                                                                                                                 #
 #                                                                                                                                #
-# ./geo_Cancer_Prognostic_Datasets_Retriever -h [-f or -d INPUT_GEO_FILE] [-p PLATFORMS_CODES] [-c CANCER_TYPE] [-o OUTPUT_FILE] #
+# ./geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES] [-o OUTPUT_FILE]                               #
 #                                                                                                                                #
 ##################################################################################################################################
 
@@ -79,8 +79,9 @@ my $filter2_count         = 0;
 my %simple_hash           = ();
 my ($cwd, $prog_path)     = (cwd()) x 2; #get path of the current working directory 		          
 ($prog_path)              = split(/bin/, "$cwd");
-my $current_date_time;
+my $current_date_time     = date_time();
 my $run_dir;
+my @GEO_list              = ();
 
 
 #run start-up.
@@ -111,8 +112,17 @@ main($formatted_input_file, $output_file);
 ###################################################
 
 
-
 ############################ SUBROUTINE 1 #######################################################
+#get the current date and time.
+sub date_time {
+	
+	my ($sec, $min, $hour, $mday, $mon, $yr, $wday, $yday, $isdst) = localtime();
+    my $month    = $mon + 1;
+    my $year     = $yr + 1900;
+    $current_date_time = "$year-0$month-$mday\_h$hour$min";
+}
+
+############################ SUBROUTINE 2 #######################################################
 #This subroutine prints the program details at start-up.
 sub start_up {
 	
@@ -120,32 +130,34 @@ sub start_up {
 ######################################################################
 #                                                                    #
 #           GEO Cancer Prognostic Datasets Retriever v1.0            #
-#           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~           #
+#           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            #
 #                                                                    #
 #              Author: Abbas Alameer, Kuwait University              #
+#                         abbas.alameer\@ku.edu.kw                    #
+#                                                                    #
+#                                                                    #
+#                       Developed in March/July 2021                 #
+#                     and released under GPLv2 license               #
 #                                                                    #
 ######################################################################\n\n\n" , color("reset");
-
 }
-############################ SUBROUTINE 2 #######################################################
+############################ SUBROUTINE 3 #######################################################
 #This subroutine checks all command line input switches and arguments and warns user if something 
 #is missing.
 sub input_parameters_check {
 
-my $error_message1 = "Error: The following arguments Input (-f) and download (-d) were used together. Choose one argument.\n";
-my $error_message2 = "Error: The following arguments are missing: INPUT_GEO_FILE GPL_PLATFORM CANCER_TYPE OUTPUT_FILE\n";
-my $help_message1  = "Usage: geo_Cancer_Prognostic_Datasets_Retriever -h [-f or -d INPUT_GEO_FILE] [-p PLATFORM_CODES] [-c CANCER_TYPE] [-o OUTPUT_FILE]\n";
+my $error_message = "Error: The following arguments are missing: CANCER TYPE PLATFORM_CODES OUTPUT_FILE\n";
+my $help_message1  = "Usage: geoCancerPrognosticDatasetsRetriever -h [-d CANCER_TYPE] [-p PLATFORM_CODES] [-o OUTPUT_FILE]\n";
 my $help_message2  = "Mandatory arguments:
-  INPUT_GEO_FILE        query GEO datasets file or GEO datasets search query
+  CANCER TYPE           GEO datasets search query
   PLATFORM CODES        list of GPL platform codes
-  CANCER_TYPE           cancer type
   OUTPUT_FILE           name of file which will contain the output
 
   Optional arguments:
   -h                    show help message and exit";
  
 	#parse command line switches and their arguments into a hash.
-	getopts("hf:d:p:c:o:", \%options);
+	getopts("hd:p:o:", \%options);
 	
     #Check for help switch and, if present, output help text.
 	if ($options{h}) {
@@ -155,20 +167,7 @@ my $help_message2  = "Mandatory arguments:
 		exit;
 	}
 	
-	elsif ($options{f} and $options{d}) {
-		
-		print color ("green"), "$help_message1\n", color("reset");
-		print color ("red"), $error_message1, color("reset");
-		exit;
-	}
-	
-	elsif ($options{f} and $options{p} and $options{c} and $options{o}) {
-			
-		$input_file  = "$options{f}";
-		mini();
-	}
-	
-	elsif ($options{d} and $options{p} and $options{c} and $options{o}) {
+	elsif ($options{d} and $options{p} and $options{o}) {
 		
 		my $local_query = $options{d};
 		
@@ -180,10 +179,10 @@ my $help_message2  = "Mandatory arguments:
 		mini();
 	}
 	
-	elsif (!$options{f} or !$options{d} or !$options{p} or !$options{c} or !$options{o}) {
+	elsif (!$options{d} or !$options{p} or !$options{o}) {
 			
 		print color ("green"), "$help_message1\n$help_message2\n", color("reset");
-		print color ("red"), $error_message2, color("reset");
+		print color ("red"), $error_message, color("reset");
 		exit;	
 	} 
 	
@@ -192,7 +191,11 @@ my $help_message2  = "Mandatory arguments:
 		$platform_gpl= uc($options{p});
 		my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
 		$regex_platform = join( '|', ( split(/ /, $regex1) ) );
-		$cancer_type = uc("$options{c}");
+		
+		#add dash in cancer type query search term.
+		my $temp_filename = uc("$options{d}");
+		my ($query_term_1, $query_term_2) = split ( / /, $temp_filename );
+		$cancer_type = join ( '-', $query_term_1, $query_term_2 );
 		$run_dir = "$prog_path/results/$cancer_type\_GEO-files";
 		$output_file = "$options{o}";
 	}
@@ -203,9 +206,8 @@ my $help_message2  = "Mandatory arguments:
 		print color ("red"), "Input file: $input_file was not found.\n", color("reset");
 		exit;
 	}
-
 }
-############################ SUBROUTINE 3 #######################################################
+############################ SUBROUTINE 4 #######################################################
 # The following code was reused from the NCBI's NBK25501 reference textbook.
 # See: https://www.ncbi.nlm.nih.gov/books/NBK25501/
 # It was adapted in this subroutine with additional modifications.
@@ -226,10 +228,6 @@ sub download_geo_input {
     my $data     = get($url);
 
     #add date & time to current input file download
-    my ($sec, $min, $hour, $mday, $mon, $yr, $wday, $yday, $isdst) = localtime();
-    my $month    = $mon + 1;
-    my $year     = $yr + 1900;
-    $current_date_time = "$year-$month-$mday\_h$hour$min";
 	my $geo_datasets_file = "$cancer\_cancer_GEO_$current_date_time.txt"; 
     
     open(FH, ">$prog_path/data/$geo_datasets_file") or die "Cannot open file for writing the GDS input:$!\n";
@@ -241,7 +239,7 @@ sub download_geo_input {
     
     return $geo_datasets_file;
 }
-############################ SUBROUTINE 4 #######################################################
+############################ SUBROUTINE 5 #######################################################
 #This subroutine performs minor formatting of a GEO input file to merge the title and abstract 
 #lines together to prevent the regex lines from missing potential keyword hits in the 'title' 
 #line.
@@ -279,9 +277,8 @@ sub format_input {
 	
 	close (IN);
 	close (OUT);
-
 }
-############################ SUBROUTINE 5 #######################################################
+############################ SUBROUTINE 6 #######################################################
 #Check for the presence of curl in the $PATH. If not found, install on an Ubuntu system or if 
 #not Ubuntu, prompt user to install it manually.
 sub check_curl {
@@ -308,15 +305,23 @@ sub check_curl {
 		}	
 	}
 }
-############################ SUBROUTINE 6 #######################################################
+############################ SUBROUTINE 7 #######################################################
 #This subroutine runs the main processing steps, while running other subroutines to continue the 
 #processing pipeline.
 sub main {
 	
 	my $main_formatted_input_file  = $_[0];
 	my $main_output_file           = $_[1];
+
+	if (-e "$run_dir") {
+		
+		print color ("red"), "$cancer_type\_GEO-files directory exists. Resuming analysis.\n", color("reset");	
+	}
 	
-	system ("mkdir $run_dir"); #create results output directory
+	else {
+		
+		system ("mkdir $run_dir"); #create results output directory
+	}
 	
 	print color ("green"), "Analyzing Input: $main_formatted_input_file file...\n", color("reset");
 
@@ -463,22 +468,34 @@ sub main {
 	
 	print color ("green"), "===========================================================================\n", color("reset");
 	print FH2 "===========================================================================\n";
-	print color ("green"), "Total prognostic datasets found: $filter2_count\nCheck results\/", color("reset");
+	print color ("green"), "Check results\/", color("reset");
 	print color ("blue"), "$main_output_file ", color("reset");
 	print color ("green"), "to see the results.\n", color("reset");
+	print color ("green"), "Total prognostic datasets found: $filter2_count\n";
 	print FH2 "Total prognostic datasets found:\t$filter2_count\n";
+
+	foreach my $i (0 .. $#GEO_list) {
+	
+		my ($GSE_dataset) = split(/_/, "$GEO_list[$i]");
+		my $j = $i + 1;
+		print color ("green"), "[$j] $GSE_dataset\n";
+	} 
 
 	close(FH);
 	close(FH2);
 	
+	my ($main_output_file_1, $main_outputout_file_2) = split (/\./, $main_output_file);
+	my $main_output_file_timestamped = $main_output_file_1 . "_" . $current_date_time . "." . $main_outputout_file_2;
+	
+	system("mv $prog_path/results/$main_output_file $prog_path/results/$main_output_file_timestamped");
+	
 	#check if output file is empty and if it is, then defined GPL series were not present in the user's input file. Alert user.
-	is_file_empty($main_output_file);
+	is_file_empty($main_output_file_timestamped);
 
 	#append date and time stamp to current run_dir in the results directory
 	system("mv $run_dir $run_dir\_$current_date_time");
-	
 }
-############################ SUBROUTINE 7 #######################################################
+############################ SUBROUTINE 8 #######################################################
 #This subroutine checks if the output file is empty. If it is, then defined GPL series were not 
 #present in user's input file.
 sub is_file_empty {
@@ -492,9 +509,8 @@ sub is_file_empty {
 	}
 
 	close $check_file;
-	
 }
-############################ SUBROUTINE 8 #######################################################
+############################ SUBROUTINE 9 #######################################################
 #This subroutine is called by other subroutines when a SOFT file download 
 #is needed for further analysis.
 sub download_soft_file {
@@ -537,9 +553,8 @@ sub download_soft_file {
 	}
 	
 	return $dsf_unzip_file;
-	
 }
-############################ SUBROUTINE 9 #######################################################
+############################ SUBROUTINE 10 #######################################################
 #This subroutine checks the GSE entries' full abstract for prognostic keywords. If the input 
 #file's abstract is incomplete, "more..." is found. It calls the download_soft_file() to download 
 #the .soft file and then checks for prognostic keywords. If keywords are detected, it calls the 
@@ -582,9 +597,8 @@ sub soft_file_abstract_check {
 		print FH2 "Prognostic Text filter: <No prognostic keywords found>\n";
 		return 0;
 	}
-
 }
-############################ SUBROUTINE 10 #######################################################
+############################ SUBROUTINE 11 #######################################################
 #This subroutine uses regular expression analysis to detect prognostic signature patterns. 
 #The regexes are based on over 50 parsed signatures used for different cancer types.
 sub prognostic_signature_finder {
@@ -653,11 +667,16 @@ sub prognostic_signature_finder {
 		
 	}
 	
+	else {
+		
+			#store current dataset in an array
+			push (@GEO_list, "$soft_file");
+	}
+	
 	#count total flagged datasets found by the Prognostic Signature filter
 	$filter2_count += $i;
 	
 	return %hash_signature;
 	
 	close (KEY);
-	
 }
