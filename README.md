@@ -17,13 +17,13 @@ The required input file is a GEO DataSets file obtainable as a download  from <a
 Navigate to the '/bin/' in which geoCancerPrognosticDatasetsRetriever is found and run it with the following command:
 
 ```diff
-`geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES] [-o OUTPUT_FILE]`
+geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
 ```
 
 An example command using "bladder cancer" as a query: 
 
 ```diff
-./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96" -o bladder_cancer.out
+./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
 ```
 
 The input and output files of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/data/' and '/results/' directories, respectively.
@@ -37,12 +37,11 @@ The input and output files of geo_Cancer_Prognostic_Datasets_Retriever will be f
 <p>This command will print the following instructions:</p>
 
 ```diff
-Usage: geoCancerPrognosticDatasetsRetriever -h [-d CANCER_TYPE] [-p PLATFORM_CODES] [-o OUTPUT_FILE]
+Usage: geoCancerPrognosticDatasetsRetriever -h
 
 Mandatory arguments:
-  CANCER TYPE           GEO datasets search query
-  PLATFORM CODES        list of GPL platform codes
-  OUTPUT_FILE           name of file which will contain the output
+  CANCER_TYPE           GEO datasets search query
+  PLATFORM_CODES        list of GPL platform codes
 
   Optional arguments:
   -h                    show help message and exit
