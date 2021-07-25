@@ -40,7 +40,7 @@ The input and output files of geo_Cancer_Prognostic_Datasets_Retriever will be f
 Usage: geoCancerPrognosticDatasetsRetriever -h
 
 Mandatory arguments:
-  CANCER_TYPE           GEO datasets search query
+  CANCER_TYPE           type of the cancer as query search term
   PLATFORM_CODES        list of GPL platform codes
 
   Optional arguments:
