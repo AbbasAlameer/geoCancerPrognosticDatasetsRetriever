@@ -11,7 +11,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 21/07/21                                                                                                          #
+# Last Update: 26/07/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -121,7 +121,6 @@ sub date_time {
     my $year     = $yr + 1900;
     $current_date_time = "$year-0$month-$mday\_h$hour$min";
 }
-
 ############################ SUBROUTINE 2 #######################################################
 #This subroutine prints the program details at start-up.
 sub start_up {
@@ -146,18 +145,17 @@ sub start_up {
 #is missing.
 sub input_parameters_check {
 
-my $error_message = "Error: The following arguments are missing: CANCER TYPE PLATFORM_CODES OUTPUT_FILE\n";
-my $help_message1  = "Usage: geoCancerPrognosticDatasetsRetriever -h [-d CANCER_TYPE] [-p PLATFORM_CODES] [-o OUTPUT_FILE]\n";
+my $error_message = "Error: The following arguments are missing: CANCER_TYPE PLATFORM_CODES\n";
+my $help_message1  = "Usage: geoCancerPrognosticDatasetsRetriever -d \"CANCER_TYPE\" -p \"PLATFORMS_CODES\"";
 my $help_message2  = "Mandatory arguments:
-  CANCER TYPE           GEO datasets search query
-  PLATFORM CODES        list of GPL platform codes
-  OUTPUT_FILE           name of file which will contain the output
+  CANCER_TYPE           type of the cancer as query search term
+  PLATFORM_CODES        list of GPL platform codes
 
   Optional arguments:
   -h                    show help message and exit";
  
 	#parse command line switches and their arguments into a hash.
-	getopts("hd:p:o:", \%options);
+	getopts("hd:p:", \%options);
 	
     #Check for help switch and, if present, output help text.
 	if ($options{h}) {
@@ -167,19 +165,13 @@ my $help_message2  = "Mandatory arguments:
 		exit;
 	}
 	
-	elsif ($options{d} and $options{p} and $options{o}) {
+	elsif ($options{d} and $options{p}) {
 		
-		my $local_query = $options{d};
-		
-		print color ("green"), "Downloading input file for \"$local_query\" from GeoDatasets...", color("reset");
-		
-		$input_file  = download_geo_input($options{d});
-		
-		print color ("green"), "done\n", color("reset");
+		print color ("green"), "Checking input parameters...", color("reset");
 		mini();
 	}
 	
-	elsif (!$options{d} or !$options{p} or !$options{o}) {
+	elsif (!$options{d} or !$options{p}) {
 			
 		print color ("green"), "$help_message1\n$help_message2\n", color("reset");
 		print color ("red"), $error_message, color("reset");
@@ -187,7 +179,12 @@ my $help_message2  = "Mandatory arguments:
 	} 
 	
 	sub mini {
-		 
+		
+		print color ("green"), "done\n", color("reset");
+		my $local_query = $options{d};
+		print color ("green"), "Downloading input file for \"$local_query\" from GeoDatasets...", color("reset");
+		$input_file  = download_geo_input($options{d});
+		print color ("green"), "done\n", color("reset");
 		$platform_gpl= uc($options{p});
 		my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
 		$regex_platform = join( '|', ( split(/ /, $regex1) ) );
@@ -197,7 +194,7 @@ my $help_message2  = "Mandatory arguments:
 		my ($query_term_1, $query_term_2) = split ( / /, $temp_filename );
 		$cancer_type = join ( '-', $query_term_1, $query_term_2 );
 		$run_dir = "$prog_path/results/$cancer_type\_GEO-files";
-		$output_file = "$options{o}";
+		$output_file = "$cancer_type.out";
 	}
 	
 	#Check for the presence of the input file.
@@ -228,7 +225,7 @@ sub download_geo_input {
     my $data     = get($url);
 
     #add date & time to current input file download
-    my $geo_datasets_file = "$cancer\_cancer_GEO_$current_date_time.txt"; 
+	my $geo_datasets_file = "$cancer\_cancer_GEO_$current_date_time.txt"; 
     
     open(FH, ">$prog_path/data/$geo_datasets_file") or die "Cannot open file for writing the GDS input:$!\n";
     binmode(FH, ":utf8");
@@ -479,6 +476,7 @@ sub main {
 		my ($GSE_dataset) = split(/_/, "$GEO_list[$i]");
 		my $j = $i + 1;
 		print color ("green"), "[$j] $GSE_dataset\n";
+		print FH2 "[$j] $GSE_dataset\n";
 	} 
 
 	close(FH);
