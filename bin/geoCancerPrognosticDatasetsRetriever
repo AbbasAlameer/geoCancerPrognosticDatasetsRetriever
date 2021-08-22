@@ -11,7 +11,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 26/07/21                                                                                                          #
+# Last Update: 20/08/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -41,7 +41,7 @@
 # Program Usage:                                                                                                                 #
 # --------------                                                                                                                 #
 #                                                                                                                                #
-# ./geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES] [-o OUTPUT_FILE]                               #
+# ./geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES]                                                #
 #                                                                                                                                #
 ##################################################################################################################################
 
@@ -55,6 +55,7 @@ use Term::ANSIColor;
 use Cwd;
 use Getopt::Std;
 use LWP::Simple;
+use File::Basename;
 
 
 #variables
@@ -82,6 +83,7 @@ my ($cwd, $prog_path)     = (cwd()) x 2; #get path of the current working direct
 my $current_date_time     = date_time();
 my $run_dir;
 my @GEO_list              = ();
+my $input_command_line;
 
 
 #run start-up.
@@ -117,9 +119,19 @@ main($formatted_input_file, $output_file);
 sub date_time {
 	
     my ($sec, $min, $hour, $mday, $mon, $yr, $wday, $yday, $isdst) = localtime();
+    my $ctime = localtime();
+    my $time_hour;
+    my $time_minutes; 
+                                       #hour  #minutes
+    if ($ctime =~ m/^\w+\s+\w+\s+\d+\s+(\d+)\:(\d+)\:\d+\s+\d+/) {
+		
+		$time_hour = $1;
+		$time_minutes = $2;
+	}
+	
     my $month    = $mon + 1;
     my $year     = $yr + 1900;
-    $current_date_time = "$year-0$month-$mday\_h$hour$min";
+    $current_date_time = "$year-0$month-$mday\_h$time_hour$time_minutes";
 }
 ############################ SUBROUTINE 2 #######################################################
 #This subroutine prints the program details at start-up.
@@ -135,7 +147,7 @@ sub start_up {
 #                         abbas.alameer\@ku.edu.kw                    #
 #                                                                    #
 #                                                                    #
-#                       Developed in March/July 2021                 #
+#                       Developed in March/August 2021               #
 #                     and released under GPLv2 license               #
 #                                                                    #
 ######################################################################\n\n\n" , color("reset");
@@ -181,28 +193,100 @@ my $help_message2  = "Mandatory arguments:
 	sub mini {
 		
 		print color ("green"), "done\n", color("reset");
-		my $local_query = $options{d};
-		print color ("green"), "Downloading input file for \"$local_query\" from GeoDatasets...", color("reset");
-		$input_file  = download_geo_input($options{d});
-		print color ("green"), "done\n", color("reset");
-		$platform_gpl= uc($options{p});
-		my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
-		$regex_platform = join( '|', ( split(/ /, $regex1) ) );
 		
-		#add dash in cancer type query search term.
-		my $temp_filename = uc("$options{d}");
+		my $restart_input_file;
+		my $temp_filename = "$options{d}";
 		my ($query_term_1, $query_term_2) = split ( / /, $temp_filename );
-		$cancer_type = join ( '-', $query_term_1, $query_term_2 );
+		#add dash in cancer type query search term.
+		$cancer_type = uc ( join ( '-', $query_term_1, $query_term_2 ) );
+		my $cancer = "$query_term_1";
+		my @files = glob("$prog_path/data/$cancer\_cancer_GEO_*.txt");
+		my @sorted_files = sort {$b cmp $a} @files;
 		$run_dir = "$prog_path/results/$cancer_type\_GEO-files";
-		$output_file = "$cancer_type.out";
+		
+		foreach my $file (@sorted_files) {
+			
+			$restart_input_file = basename($file);
+			last;
+		}
+
+		#If an old run file was found, prompt the user with choices to make.
+		if (-e "$run_dir") {
+			
+			print color ("red"), "$cancer_type\_GEO-files directory exists...This run was not completed\n", color("reset");
+			my $text = "";
+			my $ok = timed_response( sub { 	
+			
+				print color ("red"), "Do you want to resume an interrupted execution [r], or start a new one [n]? (r/n)\nDefault selection will be [n] after 10 seconds...\n", color("reset"); $text = <STDIN>; 
+			
+			}, 10);
+			
+			chomp($text);
+
+			if ($text eq "r") {
+				
+				print color ("green"), "Resuming analysis using input file: $restart_input_file\n", color("reset");
+				$platform_gpl= uc($options{p});
+				my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
+				$regex_platform = join( '|', ( split(/ /, $regex1) ) );
+				$input_file = $restart_input_file;
+				$output_file = "$cancer_type.out";
+			}
+			
+			#this is when the user selects "n", or types nothing/ or 10 seconds elapse -> defaults to "n"
+			else {
+
+				print color ("green"), "Starting new analysis...\n", color("reset");
+				system ("rm -r $run_dir"); #remove old results output directory
+				new_run($query_term_1);
+			}
+
+			sub timed_response {
+
+				my ($f, $sec) = @_;
+
+				return eval {
+			  
+					local $SIG{ALRM} = sub { die };
+					alarm($sec);
+					$f->();
+					alarm(0);
+					1;
+				};
+			}	
+		}
+
+		#else no "interrupted" run directory was found. Start a new run.
+		else {
+			
+			new_run($query_term_1);
+		}
+
+		sub new_run {
+			
+			my $cancer = $_[0];
+			print color ("green"), "Downloading input file for \"$cancer\" cancer from GeoDatasets...", color("reset");
+			$input_file  = download_geo_input($options{d});
+			print color ("green"), "done\n", color("reset");
+			system ("mkdir $run_dir"); #create results output directory
+			$input_file  = download_geo_input($options{d});
+			$platform_gpl= uc($options{p});
+			my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
+			$regex_platform = join( '|', ( split(/ /, $regex1) ) );
+			$output_file = "$cancer_type.out";
+			
+			#Check for the presence of the input file.
+			unless (-e "$prog_path/data/$input_file") {
+		
+				print color ("red"), "Input file: $input_file was not found.\n", color("reset");
+				exit;
+			}
+		}	
 	}
 	
-	#Check for the presence of the input file.
-	unless (-e "$prog_path/data/$input_file") {
-		
-		print color ("red"), "Input file: $input_file was not found.\n", color("reset");
-		exit;
-	}
+	my $local_query = $options{d};
+	my $local_gpl    = $options{p};
+	$input_command_line = "User input command: ./geoCancerPrognosticDatasetsRetriever -d \"$local_query\" -p \"$local_gpl\"";
 }
 ############################ SUBROUTINE 4 #######################################################
 # The following code was reused from the NCBI's NBK25501 reference textbook.
@@ -266,8 +350,7 @@ sub format_input {
 			$concatenate .= "$line";
 			print OUT "$concatenate";
 			$concatenate  = ""; #reinitialize variable for next entry.
-		}
-			
+		}	
 	}
 	
 	print color ("green"), "done\n", color("reset");
@@ -309,16 +392,6 @@ sub main {
 	
 	my $main_formatted_input_file  = $_[0];
 	my $main_output_file           = $_[1];
-
-	if (-e "$run_dir") {
-		
-		print color ("red"), "$cancer_type\_GEO-files directory exists. Resuming analysis.\n", color("reset");	
-	}
-	
-	else {
-		
-		system ("mkdir $run_dir"); #create results output directory
-	}
 	
 	print color ("green"), "Analyzing Input: $main_formatted_input_file file...\n", color("reset");
 
@@ -459,14 +532,20 @@ sub main {
 		}	
 	}
 	
-	print color ("green"), "Analysis complete.\n\n", color("reset");
+	print color ("green"), "Analysis complete.\n", color("reset");
+	print color ("green"), "$input_command_line\n\n", color("reset");
 	
 	system ("rm $prog_path\/data\/$main_formatted_input_file");
+	
+	my ($main_output_file_1, $main_outputout_file_2) = split (/\./, $main_output_file);
+	my $main_output_file_timestamped = $main_output_file_1 . "_" . $current_date_time . "." . $main_outputout_file_2;
+	
+	system("mv $prog_path/results/$main_output_file $prog_path/results/$main_output_file_timestamped");
 	
 	print color ("green"), "===========================================================================\n", color("reset");
 	print FH2 "===========================================================================\n";
 	print color ("green"), "Check results\/", color("reset");
-	print color ("blue"), "$main_output_file ", color("reset");
+	print color ("blue"), "$main_output_file_timestamped ", color("reset");
 	print color ("green"), "to see the results.\n", color("reset");
 	print color ("green"), "Total prognostic datasets found: $filter2_count\n";
 	print FH2 "Total prognostic datasets found:\t$filter2_count\n";
@@ -481,11 +560,6 @@ sub main {
 
 	close(FH);
 	close(FH2);
-	
-	my ($main_output_file_1, $main_outputout_file_2) = split (/\./, $main_output_file);
-	my $main_output_file_timestamped = $main_output_file_1 . "_" . $current_date_time . "." . $main_outputout_file_2;
-	
-	system("mv $prog_path/results/$main_output_file $prog_path/results/$main_output_file_timestamped");
 	
 	#check if output file is empty and if it is, then defined GPL series were not present in the user's input file. Alert user.
 	is_file_empty($main_output_file_timestamped);
@@ -503,7 +577,7 @@ sub is_file_empty {
 
 	if ($first_line =~ m/^=+/) {
 		
-		print color ("red"), "No GPL series 96, 97, or 570 were found in $input_file\n", color("reset"); 
+		print color ("red"), "No GPL series \"$platform_gpl\" were found in $input_file\n", color("reset"); 
 	}
 
 	close $check_file;
@@ -524,7 +598,7 @@ sub download_soft_file {
 	if (-e "$cwd/$dsf_zip_file") { 
 		
 		print color ("red"), "\"$dsf_zip_file\" zip file exists\n", color("reset");
-		print color ("red"), "Deleting corrupted file...\n", color("reset");
+		print color ("red"), "Deleting corrupted file...", color("reset");
 		system("rm $dsf_zip_file"); 
 		print color ("red"), "done\n", color("reset");
 	}
