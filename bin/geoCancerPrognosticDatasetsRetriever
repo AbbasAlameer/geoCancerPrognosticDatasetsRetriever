@@ -11,7 +11,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 23/08/21                                                                                                          #
+# Last Update: 24/08/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -269,7 +269,6 @@ my $help_message2  = "Mandatory arguments:
 			$input_file  = download_geo_input($options{d});
 			print color ("green"), "done\n", color("reset");
 			system ("mkdir $run_dir"); #create results output directory
-			$input_file  = download_geo_input($options{d});
 			$platform_gpl= uc($options{p});
 			my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
 			$regex_platform = join( '|', ( split(/ /, $regex1) ) );
@@ -306,6 +305,7 @@ sub download_geo_input {
     #assemble the efetch URL
     $url         = $base . "efetch.fcgi?db=$geo_db&query_key=$key&WebEnv=$web";
     $url        .= "&rettype=abstract&retmode=text";
+    
     my $data     = get($url);
     
     #Check for a GeoDatasets timeout error and abort run, if found.
