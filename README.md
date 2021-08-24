@@ -17,7 +17,7 @@ The required input file is a GEO DataSets file obtainable as a download  from <a
 Navigate to the '/bin/' in which geoCancerPrognosticDatasetsRetriever is found and run it with the following command:
 
 ```diff
-geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
+./geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
 ```
 
 An example command using "bladder cancer" as a query: 
