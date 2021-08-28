@@ -1,39 +1,45 @@
 1.
-4 related Platforms 26 Samples
-Organism:	Homo sapiens; Mus musculus
-FTP download: GEO (BED, BW) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE140nnn/GSE140808/
+Platform: GPL570 24 Samples
+Organism:	Homo sapiens
+Found 'more...': Checking abstract further...
+FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE166nnn/GSE166716/
+Prognostic Text filter: <No prognostic keywords found>
 2.
+4 related Platforms 26 Samples
+Organism:	Homo sapiens
+FTP download: GEO (BED, BW) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE140nnn/GSE140808/
+3.
 Platform: GPL570 3 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE119nnn/GSE119639/
 Prognostic Text filter: <Prognostic keywords found>
 Prognostic Signature filter: <No data found>
 
-3.
+4.
 Platform: GPL570 6 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE97nnn/GSE97943/
-4.
+5.
 Platform: GPL570 12 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE122nnn/GSE122306/
-5.
+6.
 Platforms: GPL96 GPL6984 70 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL, IDAT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE64nnn/GSE64573/
-6.
+7.
 Platform: GPL96 20 Samples
 Organism:	Homo sapiens
 Found 'more...': Checking abstract further...
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE64nnn/GSE64279/
 Prognostic Text filter: <No prognostic keywords found>
-7.
+8.
 Platform: GPL570 4 Samples
 Organism:	Homo sapiens
 Found 'more...': Checking abstract further...
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE65nnn/GSE65577/
 Prognostic Text filter: <No prognostic keywords found>
-8.
+9.
 Platform: GPL570 6 Samples
 Organism:	Homo sapiens
 Found 'more...': Checking abstract further...
@@ -41,39 +47,39 @@ FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE45nnn/GSE45636/
 Prognostic Text filter: <Prognostic keywords found>
 Prognostic Signature filter: <No data found>
 
-9.
+10.
 Platform: GPL570 6 Samples
 Organism:	Homo sapiens
 Found 'more...': Checking abstract further...
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE56nnn/GSE56037/
 Prognostic Text filter: <No prognostic keywords found>
-10.
+11.
 Platform: GPL570 10 Samples
 Organism:	Homo sapiens
 Found 'more...': Checking abstract further...
 FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE38nnn/GSE38944/
 Prognostic Text filter: <No prognostic keywords found>
-11.
+12.
 Platform: GPL570 92 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL, CHP) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE31nnn/GSE31189/
-12.
+13.
 Platform: GPL96 19 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE37nnn/GSE37317/
-13.
+14.
 Dataset: GDS4454 Platform: GPL570 24 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE41nnn/GSE41035/
-14.
+15.
 Platform: GPL570 Series: GSE41035 24 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4454/
-15.
+16.
 4 related Platforms 121 Samples
 Organism:	Homo sapiens
 FTP download: GEO (BED, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE38nnn/GSE38495/
-16.
+17.
 Dataset: GDS4455 Platform: GPL570 4 Samples
 Organism:	Homo sapiens
 Found 'more...': Checking abstract further...
@@ -81,25 +87,21 @@ FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE35nnn/GSE35014/
 Prognostic Text filter: <Prognostic keywords found>
 Prognostic Signature filter: <No data found>
 
-17.
+18.
 Platform: GPL570 Series: GSE35014 4 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4455/
-18.
+19.
 Dataset: GDS4456 Platform: GPL570 93 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE31nnn/GSE31684/
 Prognostic Text filter: <Prognostic keywords found>
 Prognostic Signature filter: <Prognostic signature found>
 
-19.
+20.
 Platform: GPL570 Series: GSE31684 93 Samples
 Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/datasets/GDS4nnn/GDS4456/
-20.
-Platforms: GPL570 GPL9767 9 Samples
-Organism:	Homo sapiens
-FTP download: GEO (CEL, TAR, TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE31nnn/GSE31866/
 21.
 Platform: GPL570 3 Samples
 Organism:	Homo sapiens
@@ -1323,3 +1325,5 @@ Organism:	Homo sapiens
 FTP download: GEO (CEL) ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM180nnn/GSM180991/
 ===========================================================================
 Total prognostic datasets found:	2
+[1] GSE31684
+[2] GSE5287
