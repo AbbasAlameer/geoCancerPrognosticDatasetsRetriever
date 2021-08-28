@@ -11,7 +11,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 24/08/21                                                                                                          #
+# Last Update: 28/08/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -89,6 +89,9 @@ my $input_command_line;
 #run start-up.
 start_up();
 
+#check that "LWP::Protocol::https" is installed on current system.
+module_check();
+
 #check for input switches/arguments.
 input_parameters_check();
 			
@@ -113,8 +116,28 @@ main($formatted_input_file, $output_file);
 #                                                 #
 ###################################################
 
-
 ############################ SUBROUTINE 1 #######################################################
+#check if CPAN module (LWP::Protocol::https) is installed on current system and install if not found.
+sub module_check {
+	
+	my $cpan_module = "LWP::Protocol::https";
+
+	eval "use $cpan_module";
+
+	if ($@) { 
+
+		print color ("red"), "CPAN module: \"$cpan_module\" not found...\n", color("reset");
+		print color ("green"), "Preparing one time installation of $cpan_module....\nInstalling cpanm....\n", color("reset");
+		#install cpanm to make installing other modules easier
+		system ("cpan App::cpanminus");
+		print color ("green"), "done\n", color("reset");
+		print color ("green"), "Installing $cpan_module....\n", color("reset");
+		#now install LWP::Protocol::https module
+		system ("cpanm $cpan_module");
+		print color ("green"), "done\n", color("reset");
+	}
+}
+############################ SUBROUTINE 2 #######################################################
 #get the current date and time.
 sub date_time {
 	
@@ -133,7 +156,7 @@ sub date_time {
     my $year     = $yr + 1900;
     $current_date_time = "$year-0$month-$mday\_h$time_hour$time_minutes";
 }
-############################ SUBROUTINE 2 #######################################################
+############################ SUBROUTINE 3 #######################################################
 #This subroutine prints the program details at start-up.
 sub start_up {
 	
@@ -152,7 +175,7 @@ sub start_up {
 #                                                                    #
 ######################################################################\n\n\n" , color("reset");
 }
-############################ SUBROUTINE 3 #######################################################
+############################ SUBROUTINE 4 #######################################################
 #This subroutine checks all command line input switches and arguments and warns user if something 
 #is missing.
 sub input_parameters_check {
@@ -287,7 +310,7 @@ my $help_message2  = "Mandatory arguments:
 	my $local_gpl    = $options{p};
 	$input_command_line = "User input command: ./geoCancerPrognosticDatasetsRetriever -d \"$local_query\" -p \"$local_gpl\"";
 }
-############################ SUBROUTINE 4 #######################################################
+############################ SUBROUTINE 5 #######################################################
 # The following code was reused from the NCBI's NBK25501 reference textbook.
 # See: https://www.ncbi.nlm.nih.gov/books/NBK25501/
 # It was adapted in this subroutine with additional modifications.
@@ -327,7 +350,7 @@ sub download_geo_input {
     
     return $geo_datasets_file;
 }
-############################ SUBROUTINE 5 #######################################################
+############################ SUBROUTINE 6 #######################################################
 #This subroutine performs minor formatting of a GEO input file to merge the title and abstract 
 #lines together to prevent the regex lines from missing potential keyword hits in the 'title' 
 #line.
@@ -365,7 +388,7 @@ sub format_input {
 	close (IN);
 	close (OUT);
 }
-############################ SUBROUTINE 6 #######################################################
+############################ SUBROUTINE 7 #######################################################
 #Check for the presence of curl in the $PATH. If not found, install on an Ubuntu system or if 
 #not Ubuntu, prompt user to install it manually.
 sub check_curl {
@@ -392,7 +415,7 @@ sub check_curl {
 		}	
 	}
 }
-############################ SUBROUTINE 7 #######################################################
+############################ SUBROUTINE 8 #######################################################
 #This subroutine runs the main processing steps, while running other subroutines to continue the 
 #processing pipeline.
 sub main {
@@ -574,7 +597,7 @@ sub main {
 	#append date and time stamp to current run_dir in the results directory
 	system("mv $run_dir $run_dir\_$current_date_time");
 }
-############################ SUBROUTINE 8 #######################################################
+############################ SUBROUTINE 9 #######################################################
 #This subroutine checks if the output file is empty. If it is, then defined GPL series were not 
 #present in user's input file.
 sub is_file_empty {
@@ -589,7 +612,7 @@ sub is_file_empty {
 
 	close $check_file;
 }
-############################ SUBROUTINE 9 #######################################################
+############################ SUBROUTINE 10 #######################################################
 #This subroutine is called by other subroutines when a SOFT file download 
 #is needed for further analysis.
 sub download_soft_file {
@@ -633,7 +656,7 @@ sub download_soft_file {
 	
 	return $dsf_unzip_file;
 }
-############################ SUBROUTINE 10 #######################################################
+############################ SUBROUTINE 11 #######################################################
 #This subroutine checks the GSE entries' full abstract for prognostic keywords. If the input 
 #file's abstract is incomplete, "more..." is found. It calls the download_soft_file() to download 
 #the .soft file and then checks for prognostic keywords. If keywords are detected, it calls the 
@@ -677,7 +700,7 @@ sub soft_file_abstract_check {
 		return 0;
 	}
 }
-############################ SUBROUTINE 11 #######################################################
+############################ SUBROUTINE 12 #######################################################
 #This subroutine uses regular expression analysis to detect prognostic signature patterns. 
 #The regexes are based on over 50 parsed signatures used for different cancer types.
 sub prognostic_signature_finder {
