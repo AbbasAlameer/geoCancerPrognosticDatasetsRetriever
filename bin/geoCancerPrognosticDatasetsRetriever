@@ -1,6 +1,4 @@
-#!/usr/bin/perl -w
-
-#Check where Perl is installed on your system. The above line may need to be changed.
+#!/usr/bin/env perl
 
 ##################################################################################################################################
 #                                                                                                                                #
@@ -405,7 +403,7 @@ sub check_curl {
 		if ($ubuntu=~ /.+ubuntu.+/ig) {
 			
 			print color ("red"), "curl binary was not found: follow onscreen instructions/input your password for its installation...\n\n", color("reset");
-			system("sudo apt install curl"); #install curl
+			system("sudo apt -y install curl"); #install curl
 			print "done\n";	
 		} 
 			
