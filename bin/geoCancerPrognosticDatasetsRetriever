@@ -9,7 +9,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 30/08/21                                                                                                          #
+# Last Update: 04/09/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -168,7 +168,7 @@ sub start_up {
 #                         abbas.alameer\@ku.edu.kw                    #
 #                                                                    #
 #                                                                    #
-#                       Developed in March/August 2021               #
+#                       Developed in March/September 2021            #
 #                     and released under GPLv2 license               #
 #                                                                    #
 ######################################################################\n\n\n" , color("reset");
@@ -478,7 +478,10 @@ sub main {
 		elsif ($line =~ m/.*related\s+Platform.?.+/) {
 							
 			$i++;
-			$flag = 1;
+			#Keep flag off to prevent particular GSE datasets - with unlisted platform data - from being processed. 
+			#This action possibly reduces the FP rate.
+			#$flag = 1;
+			$flag = 0;  
 			print "$i.\n$line$simple_hash{'Organism_line'}\n";
 			print FH2 "$i.\n$line$simple_hash{'Organism_line'}\n";
 			next;
@@ -528,7 +531,7 @@ sub main {
 					
 					my $current_file = $gse_code . "_family.soft";
 					if (exists ($local_hash{$current_file})) { print FH2 "$local_hash{$current_file}\n"; }
-					if ($ftp_keyword_count) { $keyword_count++; $extra_count++; } #update keyword count, if found a keyword was found in a soft file.
+					if ($ftp_keyword_count) { $keyword_count++; $extra_count++; } #update keyword count, if a keyword was found in a soft file.
 					
 					$wget_flag = 0;
 					$human_flag = 0;
