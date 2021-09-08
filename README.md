@@ -1,20 +1,20 @@
 # geoCancerPrognosticDatasetsRetriever
-GEO Cancer Prognostic Datasets Retriever is a Bioinformatics tool for cancer prognostic dataset retrieval from the GEO database.
+GEO Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer prognostic dataset retrieval from the GEO website.
 ## Summary
-<p>Gene Expression Omnibus (GEO) Cancer Prognostic Datasets Retriever is a Bioinformatics tool for cancer prognostic dataset retrieval from the GEO database. It requires a GeoDatasets input file listing all GSE dataset entries for a specific cancer (ex. Bladder cancer), obtained as a download from the GEO database. This Bioinformatics tool functions by applying two heuristic filters to examine individual GSE dataset entries listed in a GEO DataSets input file. The Prognostic Text filter flags for prognostic keywords (ex. “prognosis” or “survival”) used by clinical scientists and present in the title/abstract entries of a GSE dataset. If found, this tool retrieves those flagged datasets. Next, the second filter (Prognostic Signature filter) filters these datasets further by applying prognostic signature pattern matching (Perl regular expression signatures) to identify if the GSE dataset is a likely prognostic dataset.</p>
+<p>Gene Expression Omnibus (GEO) Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer prognostic dataset retrieval from the GEO database. It requires a GeoDatasets input file listing all GSE dataset entries for a specific cancer (for example, bladder cancer), obtained as a download from the GEO database. This bioinformatics tool functions by applying two heuristic filters to examine individual GSE dataset entries listed in a GEO DataSets input file. The Prognostic Text filter flags for prognostic keywords (ex. “prognosis” or “survival”) used by clinical scientists and present in the title/abstract entries of a GSE dataset. If found, this tool retrieves those flagged datasets. Next, the second filter (Prognostic Signature filter) filters these datasets further by applying prognostic signature pattern matching (Perl regular expression signatures) to identify if the GSE dataset is a likely prognostic dataset.</p>
 
 ## Installation
 geoCancerPrognosticDatasetsRetriever can be used on any Linux or macOS machines. To run the prgram, you need to have the following programs installed on your computer:
 
 <p><ul><li><b>Perl</b> (version 5.30.0 or later)</li></ul></p>
 <p><ul><li><b>cURL</b> (version 7.68.0 or later)</li></ul></p>
-By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Ubuntu linux by geoCancerPrognosticDatasetsRetriever.
+By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Linux Ubuntu by geoCancerPrognosticDatasetsRetriever.
 
 ## Data file
-The required input file is a GEO DataSets file obtainable as a download  from <a href="https://www.ncbi.nlm.nih.gov/gds/">GEO DataSets</a>, upon querying for any particular cancer (ex. “Bladder cancer”) in geoCancerPrognosticDatasetsRetriever.
+The required input file is a GEO DataSets file obtainable as a download  from <a href="https://www.ncbi.nlm.nih.gov/gds/" target="_blank" rel="noopener noreferrer">GEO DataSets</a>, upon querying for any particular cancer (for example, bladder cancer) in geoCancerPrognosticDatasetsRetriever.
 
 ## Execution instructions
-Navigate to the '/bin/' in which geoCancerPrognosticDatasetsRetriever is found and run it with the following command:
+Navigate to the `/bin/` in which geoCancerPrognosticDatasetsRetriever is found and run it with the following command:
 
 ```diff
 ./geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
@@ -26,7 +26,7 @@ An example command using "bladder cancer" as a query:
 ./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
 ```
 
-The input and output files of geo_Cancer_Prognostic_Datasets_Retriever will be found in the '/data/' and '/results/' directories, respectively.
+The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `/data/` and `/results/` directories, respectively.
 
 <p>Help information can be read by typing the following command:</p>  
 
@@ -48,11 +48,10 @@ Mandatory arguments:
   ```
 
 ## License
-All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU General Public License, version 2 (GPLv2).</a> 
+All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html" target="_blank" rel="noopener noreferrer">GNU General Public License, version 2 (GPLv2).</a> 
 
 ## Contact
 <p>geoCancerPrognosticDatasetsRetriever was developed by:<br>
-<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm">Abbas Alameer</a>,<br>
-Bioinformatics and Molecular Modelling Group,<br> 
-Kuwait University<br>
-Email: abbas.alameer(AT)ku.edu.kw</p>
+<a href="http://kuweb.ku.edu.kw/biosc/People/AcademicStaff/Dr.AbbasAlameer/index.htm" target="_blank" rel="noopener noreferrer">Abbas Alameer</a> (Bioinformatics and Molecular Modelling Group, Kuwait University), in collaboration with <a href="http://www.DavideChicco.it" target="_blank" rel="noopener noreferrer">Davide Chicco</a> (University of Toronto)</br>
+
+For information, please contact Abbas Alameer at abbas.alameer(AT)ku.edu.kw</p>
