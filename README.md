@@ -9,21 +9,41 @@ geoCancerPrognosticDatasetsRetriever can be used on any Linux or macOS machines.
 <p><ul><li><b>Perl</b> (version 5.30.0 or later)</li></ul></p>
 <p><ul><li><b>cURL</b> (version 7.68.0 or later)</li></ul></p>
 By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Linux Ubuntu by geoCancerPrognosticDatasetsRetriever.
+<p></p>
+
+Manual install:
+```diff
+$ perl Makefile.PL
+$ make
+$ make install
+```
+
+CPAN install:
+
+```diff
+$ cpanm App::geoCancerPrognosticDatasetsRetriever
+```
+
+To uninstall:
+
+```diff
+$ cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
+```
 
 ## Data file
 The required input file is a GEO DataSets file obtainable as a download  from <a href="https://www.ncbi.nlm.nih.gov/gds/" target="_blank" rel="noopener noreferrer">GEO DataSets</a>, upon querying for any particular cancer (for example, bladder cancer) in geoCancerPrognosticDatasetsRetriever.
 
 ## Execution instructions
-Navigate to the `/bin/` in which geoCancerPrognosticDatasetsRetriever is found and run it with the following command:
+Run geoCancerPrognosticDatasetsRetriever with the following command:
 
 ```diff
-./geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
+geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
 ```
 
 An example command using "bladder cancer" as a query: 
 
 ```diff
-./geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
+geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
 ```
 
 The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `/data/` and `/results/` directories, respectively.
@@ -31,7 +51,7 @@ The input and output files of geoCancerPrognosticDatasetsRetriever will be found
 <p>Help information can be read by typing the following command:</p>  
 
 ```diff
-./geoCancerPrognosticDatasetsRetriever -h
+geoCancerPrognosticDatasetsRetriever -h
 ```
 
 <p>This command will print the following instructions:</p>
