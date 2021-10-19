@@ -6,10 +6,10 @@
 # ~    ~          ~              ~      ~          ~        ~                                                                    #        
 #                                                                                                                                # 
 #                                                                                                                                #
-# geoCancerPrognosticDatasetsRetriever, version 1.0                                                                              #
+# geoCancerPrognosticDatasetsRetriever, version 1.01                                                                             #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 04/09/21                                                                                                          #
+# Last Update: 15/10/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -47,10 +47,8 @@
 
 #import standard Perl modules
 use strict;
-#use diagnostics;
 use warnings;
 use Term::ANSIColor;
-use Cwd;
 use Getopt::Std;
 use LWP::Simple;
 use File::Basename;
@@ -76,32 +74,28 @@ my $ftp_keyword_count     = 0;
 my $extra_count           = 0;
 my $filter2_count         = 0;
 my %simple_hash           = ();
-my ($cwd, $prog_path)     = (cwd()) x 2; #get path of the current working directory 		          
-($prog_path)              = split(/bin/, "$cwd");
+my ($cwd, $prog_path);
 my $current_date_time     = date_time();
 my $run_dir;
 my @GEO_list              = ();
 my $input_command_line;
 
 
+
 #run start-up.
 start_up();
 
-#check that "LWP::Protocol::https" is installed on current system.
-module_check();
+#perform initial checks.
+initial_checks();
 
 #check for input switches/arguments.
 input_parameters_check();
-			
-#check for curl binary on current system.
-check_curl();
 
 #format the input file.
 format_input($input_file, $formatted_input_file);
 
 #run main processing events of geo_CPDR and output results.
 main($formatted_input_file, $output_file);
-
 
 
 
@@ -115,9 +109,32 @@ main($formatted_input_file, $output_file);
 ###################################################
 
 ############################ SUBROUTINE 1 #######################################################
-#check if CPAN module (LWP::Protocol::https) is installed on current system and install if not found.
-sub module_check {
+#various checks done before program's run execution.
+sub initial_checks {
 	
+	#check 1a - check that the script is installed on the system.
+	#Prompt user to install it, if not found in the $PATH.
+	#check 1b - check for the presence of the directories "run/" and "data/" used by the program
+	#and create them if missing.
+	my $which_path = qx{which geoCancerPrognosticDatasetsRetriever};
+	
+	unless ($which_path) {
+		
+		print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
+		print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
+		exit;
+	} 
+
+	else {
+		
+		($cwd)       = ($which_path); #save program's $PATH location.
+		($prog_path) = split("/bin/geoCancerPrognosticDatasetsRetriever", "$cwd");
+		system("mkdir -p $prog_path/data/");
+		system("mkdir -p $prog_path/results/");
+	} 
+
+	#check 2 - check if CPAN module (LWP::Protocol::https) is installed on current system 
+	#and install it if not found.
 	my $cpan_module = "LWP::Protocol::https";
 
 	eval "use $cpan_module";
@@ -134,6 +151,30 @@ sub module_check {
 		system ("cpanm $cpan_module");
 		print color ("green"), "done\n", color("reset");
 	}
+	
+	#check 3 - check for the presence of curl binary in the $PATH. 
+	#if not found, install on an Ubuntu/Ubuntu-based systems. 
+	#if system is not Ubuntu, prompt user to install it manually.
+	my $check = qx{which curl};
+	
+	if (!$check) {
+			
+		#check if current system is Ubuntu/or Ubuntu-based
+		my $ubuntu = qx{uname -a};
+			
+		if ($ubuntu=~ /.+ubuntu.+/ig) {
+			
+			print color ("red"), "curl binary was not found: follow onscreen instructions/input your password for its installation...\n\n", color("reset");
+			system("sudo apt -y install curl"); #install curl
+			print "done\n";	
+		} 
+			
+		else { 
+				
+			print color ("red"), "curl binary was not found: install it on your system.\n", color("reset"); 
+		}	
+	}
+	
 }
 ############################ SUBROUTINE 2 #######################################################
 #get the current date and time.
@@ -159,19 +200,19 @@ sub date_time {
 sub start_up {
 	
 	print color ("yellow"),"  
-######################################################################
-#                                                                    #
-#           GEO Cancer Prognostic Datasets Retriever v1.0            #
-#           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            #
-#                                                                    #
-#              Author: Abbas Alameer, Kuwait University              #
-#                         abbas.alameer\@ku.edu.kw                    #
-#                                                                    #
-#                                                                    #
-#                       Developed in March/September 2021            #
-#                     and released under GPLv2 license               #
-#                                                                    #
-######################################################################\n\n\n" , color("reset");
+#######################################################################
+#                                                                     #
+#           GEO Cancer Prognostic Datasets Retriever v1.01            #
+#           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            #
+#                                                                     #
+#              Author: Abbas Alameer, Kuwait University               #
+#                         abbas.alameer\@ku.edu.kw                     #
+#                                                                     #
+#                                                                     #
+#                       Developed in March/October 2021               #
+#                     and released under GPLv2 license                #
+#                                                                     #
+#######################################################################\n\n\n" , color("reset");
 }
 ############################ SUBROUTINE 4 #######################################################
 #This subroutine checks all command line input switches and arguments and warns user if something 
@@ -306,7 +347,7 @@ my $help_message2  = "Mandatory arguments:
 	
 	my $local_query = $options{d};
 	my $local_gpl    = $options{p};
-	$input_command_line = "User input command: ./geoCancerPrognosticDatasetsRetriever -d \"$local_query\" -p \"$local_gpl\"";
+	$input_command_line = "User input command: geoCancerPrognosticDatasetsRetriever -d \"$local_query\" -p \"$local_gpl\"";
 }
 ############################ SUBROUTINE 5 #######################################################
 # The following code was reused from the NCBI's NBK25501 reference textbook.
@@ -387,33 +428,6 @@ sub format_input {
 	close (OUT);
 }
 ############################ SUBROUTINE 7 #######################################################
-#Check for the presence of curl in the $PATH. If not found, install on an Ubuntu system or if 
-#not Ubuntu, prompt user to install it manually.
-sub check_curl {
-	
-	#check for the presence of curl binary
-	my $check = qx{which curl};
-	
-	#if no curl binary was found, install it on Ubuntu/Ubuntu-based systems
-	if (!$check) {
-			
-		#check if current system is Ubuntu/or Ubuntu-based
-		my $ubuntu = qx{uname -a};
-			
-		if ($ubuntu=~ /.+ubuntu.+/ig) {
-			
-			print color ("red"), "curl binary was not found: follow onscreen instructions/input your password for its installation...\n\n", color("reset");
-			system("sudo apt -y install curl"); #install curl
-			print "done\n";	
-		} 
-			
-		else { 
-				
-			print "curl is not found on this system: install it on your system.\n"; 
-		}	
-	}
-}
-############################ SUBROUTINE 8 #######################################################
 #This subroutine runs the main processing steps, while running other subroutines to continue the 
 #processing pipeline.
 sub main {
@@ -573,11 +587,10 @@ sub main {
 	
 	system("mv $prog_path/results/$main_output_file $prog_path/results/$main_output_file_timestamped");
 	
-	print color ("green"), "===========================================================================\n", color("reset");
-	print FH2 "===========================================================================\n";
-	print color ("green"), "Check results\/", color("reset");
-	print color ("blue"), "$main_output_file_timestamped ", color("reset");
-	print color ("green"), "to see the results.\n", color("reset");
+	print color ("green"), "=========================================================================================\n", color("reset");
+	print FH2 "==========================================================================================\n";
+	print color ("green"), "Check results file: $prog_path\/results\/", color("reset");
+	print color ("blue"), "$main_output_file_timestamped\n", color("reset");
 	print color ("green"), "Total prognostic datasets found: $filter2_count\n";
 	print FH2 "Total prognostic datasets found:\t$filter2_count\n";
 
@@ -598,7 +611,7 @@ sub main {
 	#append date and time stamp to current run_dir in the results directory
 	system("mv $run_dir $run_dir\_$current_date_time");
 }
-############################ SUBROUTINE 9 #######################################################
+############################ SUBROUTINE 8 #######################################################
 #This subroutine checks if the output file is empty. If it is, then defined GPL series were not 
 #present in user's input file.
 sub is_file_empty {
@@ -613,7 +626,7 @@ sub is_file_empty {
 
 	close $check_file;
 }
-############################ SUBROUTINE 10 #######################################################
+############################ SUBROUTINE 9 #######################################################
 #This subroutine is called by other subroutines when a SOFT file download 
 #is needed for further analysis.
 sub download_soft_file {
@@ -657,7 +670,7 @@ sub download_soft_file {
 	
 	return $dsf_unzip_file;
 }
-############################ SUBROUTINE 11 #######################################################
+############################ SUBROUTINE 10 #######################################################
 #This subroutine checks the GSE entries' full abstract for prognostic keywords. If the input 
 #file's abstract is incomplete, "more..." is found. It calls the download_soft_file() to download 
 #the .soft file and then checks for prognostic keywords. If keywords are detected, it calls the 
@@ -701,7 +714,7 @@ sub soft_file_abstract_check {
 		return 0;
 	}
 }
-############################ SUBROUTINE 12 #######################################################
+############################ SUBROUTINE 11 #######################################################
 #This subroutine uses regular expression analysis to detect prognostic signature patterns. 
 #The regexes are based on over 50 parsed signatures used for different cancer types.
 sub prognostic_signature_finder {
@@ -783,3 +796,84 @@ sub prognostic_signature_finder {
 	
 	close (KEY);
 }
+
+exit 0;
+
+=pod 
+
+=encoding utf8
+
+=head1 NAME
+
+geoCancerPrognosticDatasetsRetriever - GEO Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer prognostic dataset retrieval from the GEO website.
+
+=head1 SYNOPSIS
+
+    Usage: geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
+
+An example command using "bladder cancer" as a query: 
+
+    geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
+
+The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `/data/` and `/results/` directories, respectively.
+
+=head1 DESCRIPTION
+
+Gene Expression Omnibus (GEO) Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer prognostic dataset retrieval from the GEO database. It requires a GeoDatasets input file listing all GSE dataset entries for a specific cancer (for example, bladder cancer), obtained as a download from the GEO database. This bioinformatics tool functions by applying two heuristic filters to examine individual GSE dataset entries listed in a GEO DataSets input file. The Prognostic Text filter flags for prognostic keywords (ex. "prognosis" or "survival") used by clinical scientists and present in the title/abstract entries of a GSE dataset. If found, this tool retrieves those flagged datasets. Next, the second filter (Prognostic Signature filter) filters these datasets further by applying prognostic signature pattern matching (Perl regular expression signatures) to identify if the GSE dataset is a likely prognostic dataset.
+
+=head1 INSTALLATION
+
+geoCancerPrognosticDatasetsRetriever can be used on any Linux or macOS machines. To run the program, you need to have the cURL program (version 7.68.0 or later) installed on your computer.
+
+By default, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Linux Ubuntu by geoCancerPrognosticDatasetsRetriever.
+
+Manual install:
+
+    $ perl Makefile.PL
+    $ make
+    $ make install
+
+CPAN install:
+
+    $ cpanm App::geoCancerPrognosticDatasetsRetriever
+
+To uninstall:
+
+    $ cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
+    
+=head1 DATA FILE
+
+The required input file is a GEO DataSets file obtainable as a download  from GEO DataSets, upon querying for any particular cancer (for example, bladder cancer) in geoCancerPrognosticDatasetsRetriever.
+
+=head1 HELP
+
+Help information can be read by typing the following command: 
+
+    geoCancerPrognosticDatasetsRetriever -h
+
+This command will print the following instructions:
+
+Usage: geoCancerPrognosticDatasetsRetriever -h
+
+Mandatory arguments:
+
+    CANCER_TYPE           type of the cancer as query search term
+    PLATFORM_CODES        list of GPL platform codes
+
+    Optional arguments:
+    -h                    show help message and exit
+
+=head1 AUTHOR
+
+Abbas Alameer (Bioinformatics and Molecular Modelling Group, Kuwait University), in collaboration with Davide Chicco (University of Toronto)
+
+For information, please contact Abbas Alameer at abbas.alameer(AT)ku.edu.kw
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2021 by Abbas Alameer, Kuwait University
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2 (GPLv2).
+
+=cut
