@@ -39,7 +39,7 @@
 # Program Usage:                                                                                                                 #
 # --------------                                                                                                                 #
 #                                                                                                                                #
-# ./geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES]                                                #
+# geoCancerPrognosticDatasetsRetriever -h [-d CANCER TYPE] [-p PLATFORMS_CODES]                                                  #
 #                                                                                                                                #
 ##################################################################################################################################
 
