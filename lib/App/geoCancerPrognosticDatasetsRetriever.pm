@@ -8,7 +8,7 @@ App::geoCancerPrognosticDatasetsRetriever - GEO Cancer Prognostic Datasets Retri
 
 =head1 DESCRIPTION
 
-See F<bin/geoCancerPrognosticDatasetsRetriever> for details of the app.
+See F<bin/geoCancerPrognosticDatasetsRetriever> for details of the application.
 
 =head1 AUTHOR
 
