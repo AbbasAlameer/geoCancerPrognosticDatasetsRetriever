@@ -837,17 +837,17 @@ By default, cURL is installed on all macOS versions. cURL may not be installed o
 
 Manual install:
 
-    $ perl Makefile.PL
-    $ make
-    $ make install
+    perl Makefile.PL
+    make
+    make install
 
 CPAN install:
 
-    $ cpanm App::geoCancerPrognosticDatasetsRetriever
+    cpanm App::geoCancerPrognosticDatasetsRetriever
 
 To uninstall:
 
-    $ cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
+    cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
     
 =head1 DATA FILE
 
