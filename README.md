@@ -13,21 +13,21 @@ By default, Perl is installed on all Linux or macOS operating systems. Likewise,
 
 Manual install:
 ```diff
-$ perl Makefile.PL
-$ make
-$ make install
+perl Makefile.PL
+make
+make install
 ```
 
 CPAN install:
 
 ```diff
-$ cpanm App::geoCancerPrognosticDatasetsRetriever
+cpanm App::geoCancerPrognosticDatasetsRetriever
 ```
 
 To uninstall:
 
 ```diff
-$ cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
+cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
 ```
 
 ## Data file
