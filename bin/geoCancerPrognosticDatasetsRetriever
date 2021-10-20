@@ -821,7 +821,7 @@ geoCancerPrognosticDatasetsRetriever - GEO Cancer Prognostic Datasets Retriever 
 
 An example command using "bladder cancer" as a query: 
 
-    geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
+    $ geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
 
 The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `/data/` and `/results/` directories, respectively.
 
@@ -837,17 +837,17 @@ By default, cURL is installed on all macOS versions. cURL may not be installed o
 
 Manual install:
 
-    perl Makefile.PL
-    make
-    make install
+    $  perl Makefile.PL
+    $  make
+    $  make install
 
 CPAN install:
 
-    cpanm App::geoCancerPrognosticDatasetsRetriever
+    $  cpanm App::geoCancerPrognosticDatasetsRetriever
 
 To uninstall:
 
-    cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
+    $  cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
     
 =head1 DATA FILE
 
@@ -857,7 +857,7 @@ The required input file is a GEO DataSets file obtainable as a download  from GE
 
 Help information can be read by typing the following command: 
 
-    geoCancerPrognosticDatasetsRetriever -h
+    $ geoCancerPrognosticDatasetsRetriever -h
 
 This command will print the following instructions:
 
