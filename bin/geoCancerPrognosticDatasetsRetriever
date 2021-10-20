@@ -9,7 +9,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.01                                                                             #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 15/10/21                                                                                                          #
+# Last Update: 20/10/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -52,6 +52,7 @@ use Term::ANSIColor;
 use Getopt::Std;
 use LWP::Simple;
 use File::Basename;
+use File::HomeDir;
 
 
 #variables
@@ -79,7 +80,10 @@ my $current_date_time     = date_time();
 my $run_dir;
 my @GEO_list              = ();
 my $input_command_line;
-
+my $general_dir;
+my $temp_subdir;
+my $data_subdir;
+my $results_subdir;
 
 
 #run start-up.
@@ -112,11 +116,13 @@ main($formatted_input_file, $output_file);
 #various checks done before program's run execution.
 sub initial_checks {
 	
-	#check 1a - check that the script is installed on the system.
+	#check 1 - check that the script is installed on the system.
 	#Prompt user to install it, if not found in the $PATH.
-	#check 1b - check for the presence of the directories "run/" and "data/" used by the program
-	#and create them if missing.
-	my $which_path = qx{which geoCancerPrognosticDatasetsRetriever};
+	my $which_path	  = qx{which geoCancerPrognosticDatasetsRetriever};
+	$general_dir	  = "~/geoCancerPrognosticDatasetsRetriever_files";
+	$temp_subdir       = "~/geoCancerPrognosticDatasetsRetriever_files/temp/";
+	$data_subdir	  = "~/geoCancerPrognosticDatasetsRetriever_files/data/";
+	$results_subdir = "~/geoCancerPrognosticDatasetsRetriever_files/results/";
 	
 	unless ($which_path) {
 		
@@ -127,10 +133,10 @@ sub initial_checks {
 
 	else {
 		
-		($cwd)       = ($which_path); #save program's $PATH location.
-		($prog_path) = split("/bin/geoCancerPrognosticDatasetsRetriever", "$cwd");
-		system("mkdir -p $prog_path/data/");
-		system("mkdir -p $prog_path/results/");
+		#create main run directories - ignore if already present
+		system("mkdir -p $general_dir $temp_subdir $data_subdir $results_subdir");
+		my $home_dir = File::HomeDir -> my_home;
+		$prog_path = $home_dir . "/geoCancerPrognosticDatasetsRetriever_files";
 	} 
 
 	#check 2 - check if CPAN module (LWP::Protocol::https) is installed on current system 
@@ -380,7 +386,7 @@ sub download_geo_input {
     #add date & time to current input file download
 	my $geo_datasets_file = "$cancer\_cancer_GEO_$current_date_time.txt"; 
     
-    open(FH, ">$prog_path/data/$geo_datasets_file") or die "Cannot open file for writing the GDS input:$!\n";
+    open(FH, '>', "$prog_path/data/$geo_datasets_file") or die "Cannot open file for writing the GDS input:$!\n";
     binmode(FH, ":utf8");
     
     print FH "$data";
@@ -589,7 +595,7 @@ sub main {
 	
 	print color ("green"), "=========================================================================================\n", color("reset");
 	print FH2 "==========================================================================================\n";
-	print color ("green"), "Check results file: $prog_path\/results\/", color("reset");
+	print color ("green"), "Check results file: $general_dir\/results\/", color("reset");
 	print color ("blue"), "$main_output_file_timestamped\n", color("reset");
 	print color ("green"), "Total prognostic datasets found: $filter2_count\n";
 	print FH2 "Total prognostic datasets found:\t$filter2_count\n";
@@ -639,11 +645,11 @@ sub download_soft_file {
 	#Check for the presence of a ".gz file" for the current GSE dataset. 
 	#If found, this means there is a potential incomplete/or corrupted download.
 	#Delete file to restart download.
-	if (-e "$cwd/$dsf_zip_file") { 
+	if (-e "$prog_path/temp/$dsf_zip_file") { 
 		
 		print color ("red"), "\"$dsf_zip_file\" zip file exists\n", color("reset");
 		print color ("red"), "Deleting corrupted file...", color("reset");
-		system("rm $dsf_zip_file"); 
+		system("rm $prog_path/temp/$dsf_zip_file");
 		print color ("red"), "done\n", color("reset");
 	}
 	
@@ -657,13 +663,15 @@ sub download_soft_file {
 	else {
 		
 		#system("touch curl_log.txt"); #create a curl log file.
-		system("curl -O -C - $dsf_wget_file");
-		
+		#system("curl -O -C - $dsf_wget_file");
+		#system ("cd $prog_path/bin/ && { curl -O -C - $dsf_wget_file ; cd -; }");
+		system ("cd $prog_path/temp/ && { curl -O -C - $dsf_wget_file ; }");
+
 		print color ("green"), "...done\n", color("reset");	
 		print color ("green"), "Unzipping file...", color("reset"); #unzip file
 		
-		system ("gunzip $dsf_zip_file");
-		system ("mv *.soft $run_dir");
+		system ("gunzip  $prog_path/temp/$dsf_zip_file");
+		system ("mv $prog_path/temp/*.soft $run_dir");
 		
 		print color ("green"), "done\n", color("reset");
 	}
