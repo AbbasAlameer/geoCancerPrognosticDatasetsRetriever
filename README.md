@@ -51,7 +51,7 @@ An example command using "bladder cancer" as a query:
 geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
 ```
 
-The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `/data/` and `/results/` directories, respectively.
+The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `~/geoCancerPrognosticDatasetsRetriever/data/` and `~/geoCancerPrognosticDatasetsRetriever/results/` directories, respectively.
 
 <p>Help information can be read by typing the following command:</p>  
 
