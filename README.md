@@ -67,8 +67,12 @@ Mandatory arguments:
   -h                    show help message and exit
   ```
 
-## License
-All the code is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html" target="_blank" rel="noopener noreferrer">GNU General Public License, version 2 (GPLv2).</a> 
+## Copyright and License
+
+Copyright 2021 by Abbas Alameer, Kuwait University
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html" target="_blank" rel="noopener noreferrer">GNU General Public License, version 2 (GPLv2).</a>
 
 ## Contact
 <p>geoCancerPrognosticDatasetsRetriever was developed by:<br>
