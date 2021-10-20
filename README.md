@@ -18,6 +18,11 @@ make
 make install
 ```
 
+On Linux Ubuntu, you might need to run the last command as a superuser
+(`sudo make install`) and to manually install the libfile-homedir-perl
+package (`sudo apt-get install -y libfile-homedir-perl`), if not
+already installed in your Perl 5 configuration.
+
 CPAN install:
 
 ```diff
