@@ -13,21 +13,21 @@ By default, Perl is installed on all Linux or macOS operating systems. Likewise,
 
 Manual install:
 ```diff
-$ perl Makefile.PL
-$ make
-$ make install
+perl Makefile.PL
+make
+make install
 ```
 
 CPAN install:
 
 ```diff
-$ cpanm App::geoCancerPrognosticDatasetsRetriever
+cpanm App::geoCancerPrognosticDatasetsRetriever
 ```
 
 To uninstall:
 
 ```diff
-$ cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
+cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
 ```
 
 ## Data file
@@ -43,7 +43,7 @@ geoCancerPrognosticDatasetsRetriever -d "CANCER_TYPE" -p "PLATFORMS_CODES"
 An example command using "bladder cancer" as a query: 
 
 ```diff
-$ geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
+geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
 ```
 
 The input and output files of geoCancerPrognosticDatasetsRetriever will be found in the `/data/` and `/results/` directories, respectively.
@@ -51,7 +51,7 @@ The input and output files of geoCancerPrognosticDatasetsRetriever will be found
 <p>Help information can be read by typing the following command:</p>  
 
 ```diff
-$ geoCancerPrognosticDatasetsRetriever -h
+geoCancerPrognosticDatasetsRetriever -h
 ```
 
 <p>This command will print the following instructions:</p>
