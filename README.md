@@ -6,7 +6,7 @@ GEO Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer pro
 ## Installation
 geoCancerPrognosticDatasetsRetriever can be used on any Linux or macOS machines. To run the program, you need to have the following programs installed on your computer:
 
-<p><ul><li><b>Perl</b> (version 5.30.0 or later)</li></ul></p>
+<p><ul><li><b>Perl</b> (version 5.8.0 or later)</li></ul></p>
 <p><ul><li><b>cURL</b> (version 7.68.0 or later)</li></ul></p>
 By default, Perl is installed on all Linux or macOS operating systems. Likewise, cURL is installed on all macOS versions. cURL may not be installed on Linux and would need to be manually installed through a Linux distribution’s software centre. It will be installed automatically on Linux Ubuntu by geoCancerPrognosticDatasetsRetriever.
 <p></p>
@@ -34,6 +34,7 @@ To uninstall:
 ```diff
 cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever
 ```
+On Linux Ubuntu, you might need to run the two previous CPAN commands as a superuser (`sudo cpanm App::geoCancerPrognosticDatasetsRetriever` and `sudo cpanm --uninstall App::geoCancerPrognosticDatasetsRetriever`).
 
 ## Data file
 The required input file is a GEO DataSets file obtainable as a download  from <a href="https://www.ncbi.nlm.nih.gov/gds/" target="_blank" rel="noopener noreferrer">GEO DataSets</a>, upon querying for any particular cancer (for example, bladder cancer) in geoCancerPrognosticDatasetsRetriever.
