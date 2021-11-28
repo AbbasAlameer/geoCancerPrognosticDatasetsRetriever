@@ -9,7 +9,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.02                                                                             #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 26/11/21                                                                                                          #
+# Last Update: 28/11/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -125,12 +125,12 @@ sub initial_checks {
 	#Prompt user to install it, if not found in the $PATH.
 	my $which_path	  = qx{which geoCancerPrognosticDatasetsRetriever};
 	
-	unless ($which_path) {
+	#unless ($which_path) {
 		
-		print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
-		print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
-		exit;
-	} 
+		#print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
+		#print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
+		#exit;
+	#} 
 
 	#check 2 - check if CPAN module (LWP::Protocol::https) is installed on current system 
 	#and install it if not found.
@@ -235,6 +235,7 @@ Optional arguments:
 		if ($element !~ m/-d|-f|-p|-k/) {
 		
 			$argv_line .= "\"$element\" ";
+			
 		} else {
 		
 			$argv_line .= "$element ";
@@ -242,6 +243,7 @@ Optional arguments:
 	}
 
 	if ($argv_line) {
+		
 		$input_command_line = "User input command: geoCancerPrognosticDatasetsRetriever $argv_line";
 	}
  
@@ -256,30 +258,7 @@ Optional arguments:
 	system("mkdir -p $general_dir $temp_subdir $data_subdir");
 	$prog_path = $home_dir . "/geoCancerPrognosticDatasetsRetriever_files";
 	
-	#check for optional user-specified results directory and create it 
-	#or default to standard result directory
-	if (exists $options{f}) {
-		
-		my $absolute_path = $options{f};
-		$results_subdir = "/geoCancerPrognosticDatasetsRetriever_files/results/";
-		
-		#check for string argument (i.e. user specified absolute path)
-		if ($absolute_path) {
-			 
-			chomp($absolute_path);
-			$results_subdir = "$absolute_path". "results/";
-		} 
-		
-	} else {
-			
-			$results_subdir = "/geoCancerPrognosticDatasetsRetriever_files/results/";
-	}
-	
-	#after checking if the CLI's "-f" option is present or not, create results directory's path.
-	$results_subdir = $home_dir . $results_subdir;
-	system("mkdir -p $results_subdir");
-	
-	#switch $file_cleanup_switch to false, if user specifies that all results files should be kept.
+	#if user specifies that all results files should be kept, change $file_cleanup_switch to false.
 	$file_cleanup_switch = 0 if defined $options{k};
 	
     #Check for help switch and, if present, output help text.
@@ -293,7 +272,59 @@ Optional arguments:
 	#elsif ($options{d} and $options{p}) {
 	elsif ($options{d}) {
 		
-		print color ("green"), "Checking input parameters...", color("reset");
+		print color ("green"), "Checking input parameters...\n", color("reset");
+		#check for optional user-specified results directory and create it
+		#or default to standard result directory
+		if (exists $options{f}) {
+		
+			my $absolute_path = $options{f};
+			$results_subdir = "/geoCancerPrognosticDatasetsRetriever_files/results/";
+		
+			#check for string argument (i.e. user specified absolute path)
+			if ($absolute_path =~ m/^\/\S+\/$/) {
+			 
+				chomp($absolute_path);
+				
+				#Check for forward slashes enclosing the arguments
+				$results_subdir = "$absolute_path". "results/";
+			} else {
+				
+				print color ("red"), "Input argument error: The directory name should include forward slashes...\nFor example: -f \"/temp_directory/\". The script will terminate here.\n", color("reset");
+				exit;
+			} 
+		
+		} else {
+			
+			print color ("green"), "No user provided temporary file path through the -f argument is present...\nSaving files to: \"~/geoCancerPrognosticDatasetsRetriever_files/\" folder...\n", color("reset");
+			 
+			$results_subdir = "/geoCancerPrognosticDatasetsRetriever_files/results/";
+		}
+	
+		#after checking if the CLI's "-f" option is present or not, create results directory's path.
+		$results_subdir = $home_dir . $results_subdir;
+		system("mkdir -p $results_subdir");
+		
+		#check if user-defined GPL platforms are specified.
+		if (defined $options{p}) {
+				
+			$platform_gpl = uc($options{p});
+				
+			#error checks done in case a user specifies "-p" flag but includes missing or wrong inputs
+			#and if that is the case, the default platform will be used.
+			if ($platform_gpl !~ m/^GPL|^\d+/) { 
+					
+				$platform_gpl = "GPL570";
+				print color ("green"), "No user provided input platform through the -p argument is present...\nDefault platform: GPL570 will be used...\n", color("reset"); 
+			}
+				
+		} else {
+				
+			#if a user does not specify any platform, default platform is set to "GPL570" 		
+			$platform_gpl = "GPL570";
+			print color ("green"), "No user provided input platform through the -p argument is present...\nDefault platform: GPL570 will be used...\n", color("reset"); 
+		}
+		
+		#after all checks above are completed - run mini() to initiate a run or check/restart aborted runs.
 		mini();
 	}
 	
@@ -307,7 +338,7 @@ Optional arguments:
 	
 	sub mini {
 		
-		print color ("green"), "done\n", color("reset");
+		#print color ("green"), "done\n", color("reset");
 		
 		my $restart_input_file;
 		my $temp_filename = "$options{d}";
@@ -330,7 +361,7 @@ Optional arguments:
 			
 			print color ("red"), "$cancer_type\_GEO-files directory exists...This run was not completed\n", color("reset");
 			my $text = "";
-			my $ok = timed_response( sub { 	
+			my $ok   = timed_response( sub { 	
 			
 				print color ("red"), "Do you want to resume an interrupted execution [r], or start a new one [n]? (r/n)\nDefault selection will be [n] after 10 seconds...\n", color("reset"); $text = <STDIN>; 
 			
@@ -341,11 +372,12 @@ Optional arguments:
 			if ($text eq "r") {
 				
 				print color ("green"), "Resuming analysis using input file: $restart_input_file\n", color("reset");
-				$platform_gpl= uc($options{p});
-				my $regex1 = join( '', ( split(/GPL/, $platform_gpl) ) );
+				#$platform_gpl	= uc($options{p});
+				$platform_gpl	= uc($platform_gpl);
+				my $regex1 		= join( '', ( split(/GPL/, $platform_gpl) ) );
 				$regex_platform = join( '|', ( split(/ /, $regex1) ) );
-				$input_file = $restart_input_file;
-				$output_file = "$cancer_type.out";
+				$input_file 	= $restart_input_file;
+				$output_file 	= "$cancer_type.out";
 			}
 			
 			#this is when the user selects "n", or types nothing/ or 10 seconds elapse -> defaults to "n"
@@ -384,24 +416,6 @@ Optional arguments:
 			$input_file     = download_geo_input($options{d});
 			print color ("green"), "done\n", color("reset");
 			system ("mkdir $run_dir"); #create results output directory
-			
-			#check if user-defined GPL platforms are specified
-			if (defined $options{p}) {
-				
-				$platform_gpl = uc($options{p});
-				
-				#error checks done in case a user specifies "-p" flag but includes missing or wrong inputs
-				#and if that is the case, the default platform will be used.
-				if ($platform_gpl !~ m/^GPL|^\d+/) { 
-					
-					$platform_gpl = "GPL570"; 
-				}	
-			} else {
-				
-				#if a user does not specify any platform, default platform is set to "GPL570" 		
-				$platform_gpl = "GPL570";
-			}
-			
 			my $regex1      = join( '', ( split(/GPL/, $platform_gpl) ) );
 			$regex_platform = join( '|', ( split(/ /, $regex1) ) );
 			$output_file    = "$cancer_type.out";
