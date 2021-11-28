@@ -125,12 +125,12 @@ sub initial_checks {
 	#Prompt user to install it, if not found in the $PATH.
 	my $which_path	  = qx{which geoCancerPrognosticDatasetsRetriever};
 	
-	#unless ($which_path) {
+	unless ($which_path) {
 		
-		#print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
-		#print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
-		#exit;
-	#} 
+		print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
+		print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
+		exit;
+	} 
 
 	#check 2 - check if CPAN module (LWP::Protocol::https) is installed on current system 
 	#and install it if not found.
