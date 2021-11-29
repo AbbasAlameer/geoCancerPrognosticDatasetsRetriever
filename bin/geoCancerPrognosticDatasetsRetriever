@@ -9,7 +9,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.02                                                                             #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 28/11/21                                                                                                          #
+# Last Update: 29/11/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -60,6 +60,7 @@ my %options 	          = (); #hash for storing command line switches and argumen
 my $input_file;
 my $formatted_input_file  = "formatted-input.dat";
 my $cancer_type;
+my ($query_term_1, $query_term_2);
 my $output_file;
 my $platform_gpl;
 my $regex_platform;
@@ -125,12 +126,12 @@ sub initial_checks {
 	#Prompt user to install it, if not found in the $PATH.
 	my $which_path	  = qx{which geoCancerPrognosticDatasetsRetriever};
 	
-	unless ($which_path) {
+	#unless ($which_path) {
 		
-		print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
-		print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
-		exit;
-	} 
+	#	print color ("red"), "geoCancerPrognosticDatasetsRetriever is not installed on this system...\n", color("reset");
+	#	print color ("red"), "See \"README\" for installation instructions.\n", color("reset");
+	#	exit;
+	#} 
 
 	#check 2 - check if CPAN module (LWP::Protocol::https) is installed on current system 
 	#and install it if not found.
@@ -273,6 +274,22 @@ Optional arguments:
 	elsif ($options{d}) {
 		
 		print color ("green"), "Checking input parameters...\n", color("reset");
+		
+		my $temp_filename = "$options{d}";
+		($query_term_1, $query_term_2) = split ( / /, $temp_filename );
+		
+		#enforce a user to use full term for cancer in -d argument (i.e. "bladder cancer", not "bladder")
+		if (!$query_term_1 or !$query_term_2) {
+			
+			print color ("red"), "Input argument error: Use full name for cancer in -d argument...\nFor example: \"bladder cancer\", not \"bladder\". The script will terminate here.\n", color("reset");
+			exit;
+			
+		} else {
+			
+			#add dash in cancer type query search term.
+			$cancer_type = uc ( join ( '-', $query_term_1, $query_term_2 ) );
+		}
+		
 		#check for optional user-specified results directory and create it
 		#or default to standard result directory
 		if (exists $options{f}) {
@@ -295,7 +312,7 @@ Optional arguments:
 		
 		} else {
 			
-			print color ("green"), "No user provided temporary file path through the -f argument is present...\nSaving files to: \"~/geoCancerPrognosticDatasetsRetriever_files/\" folder...\n", color("reset");
+			print color ("green"), "No user-provided temporary file path through the -f argument is present...\nSaving files to: \"~/geoCancerPrognosticDatasetsRetriever_files/\" folder...\n", color("reset");
 			 
 			$results_subdir = "/geoCancerPrognosticDatasetsRetriever_files/results/";
 		}
@@ -314,14 +331,14 @@ Optional arguments:
 			if ($platform_gpl !~ m/^GPL|^\d+/) { 
 					
 				$platform_gpl = "GPL570";
-				print color ("green"), "No user provided input platform through the -p argument is present...\nDefault platform: GPL570 will be used...\n", color("reset"); 
+				print color ("green"), "No user-provided input platform through the -p argument is present...\nDefault platform: GPL570 will be used...\n", color("reset"); 
 			}
 				
 		} else {
 				
 			#if a user does not specify any platform, default platform is set to "GPL570" 		
 			$platform_gpl = "GPL570";
-			print color ("green"), "No user provided input platform through the -p argument is present...\nDefault platform: GPL570 will be used...\n", color("reset"); 
+			print color ("green"), "No user-provided input platform through the -p argument is present...\nDefault platform: GPL570 will be used...\n", color("reset"); 
 		}
 		
 		#after all checks above are completed - run mini() to initiate a run or check/restart aborted runs.
@@ -341,10 +358,6 @@ Optional arguments:
 		#print color ("green"), "done\n", color("reset");
 		
 		my $restart_input_file;
-		my $temp_filename = "$options{d}";
-		my ($query_term_1, $query_term_2) = split ( / /, $temp_filename );
-		#add dash in cancer type query search term.
-		$cancer_type = uc ( join ( '-', $query_term_1, $query_term_2 ) );
 		my $cancer = "$query_term_1";
 		my @files = glob("$prog_path/data/$cancer\_cancer_GEO_*.txt");
 		my @sorted_files = sort {$b cmp $a} @files;
