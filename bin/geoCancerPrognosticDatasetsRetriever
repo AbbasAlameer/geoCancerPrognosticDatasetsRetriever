@@ -1039,9 +1039,11 @@ This command will print the following instructions:
 Usage: geoCancerPrognosticDatasetsRetriever -h
 
 Mandatory arguments:
+
     CANCER_TYPE           type of the cancer as query search term
 
-Optional arguments:
+    Optional arguments:
+    -h                    show help message and exit
     -p                    list of GPL platform codes
     -f                    user-specified absolute path to save results files
     -k                    option to keep temporary files
