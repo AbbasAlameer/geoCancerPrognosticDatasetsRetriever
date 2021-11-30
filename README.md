@@ -130,7 +130,7 @@ geoCancerPrognosticDatasetsRetriever -h
 ```diff
 Usage: geoCancerPrognosticDatasetsRetriever -h
 
-"Mandatory arguments:
+Mandatory arguments:
   CANCER_TYPE           type of the cancer as query search term
 
 Optional arguments:
