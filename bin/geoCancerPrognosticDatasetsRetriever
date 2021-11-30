@@ -9,7 +9,7 @@
 # geoCancerPrognosticDatasetsRetriever, version 1.02                                                                             #
 # -----------------------------------------------------                                                                          #
 #                                                                                                                                #
-# Last Update: 29/11/21                                                                                                          #
+# Last Update: 30/11/21                                                                                                          #
 #                                                                                                                                #
 # Author:    Abbas Alameer <abbas.alameer@ku.edu.kw>,                                                                            #
 #          Bioinformatics and Molecular Modelling Group,                                                                         #
@@ -225,7 +225,7 @@ my $help_message2  = "Mandatory arguments:
 
 Optional arguments:
   -p                    list of GPL platform codes
-  -f                    user specified absolute path to save results files
+  -f                    user-specified absolute path to save results files
   -k                    option to keep temporary files
   -h                    show help message and exit\n";
  
@@ -297,7 +297,7 @@ Optional arguments:
 			my $absolute_path = $options{f};
 			$results_subdir = "/geoCancerPrognosticDatasetsRetriever_files/results/";
 		
-			#check for string argument (i.e. user specified absolute path)
+			#check for string argument (i.e. user-specified absolute path)
 			if ($absolute_path =~ m/^\/\S+\/$/) {
 			 
 				chomp($absolute_path);
