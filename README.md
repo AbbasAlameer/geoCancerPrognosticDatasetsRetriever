@@ -18,7 +18,7 @@ The dependencies (i.e. packages) used by geoCancerPrognosticDatasetsRetriever ar
 
 
 ## Installation
-geoCancerPrognosticDatasetsRetriever can be used on any Linux, macOS, or Windows machines. On the Windows operating system you will need to install the Windows Subsystem for Linux (WSL) compatibility layer (<a href="https://docs.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener noreferrer">quick installation instructions</a>). Once WSL is launched, the user can follow the geoCancerPrognosticDatasetsRetriever instructions described below.
+geoCancerPrognosticDatasetsRetriever can be used on any Linux, macOS, or Windows machines. On the Windows operating system you will need to install the Windows Subsystem for Linux (WSL) compatibility layer (<a href="https://docs.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener noreferrer">quick installation instructions</a>). Once WSL is launched, the user can follow the geoCancerPrognosticDatasetsRetriever installation instructions described below.
 
 To run the program, you need to have the following programs installed on your computer:
 
