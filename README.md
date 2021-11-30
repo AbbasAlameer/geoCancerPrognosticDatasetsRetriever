@@ -6,15 +6,15 @@ GEO Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer pro
 ## geoCancerPrognosticDatasetsRetriever dependencies
 The dependencies (i.e. packages) used by geoCancerPrognosticDatasetsRetriever are:
 
-<li>strict</li>
-<li>warnings</li>
-<li>Term::ANSIColor</li>
-<li>Getopt::Std</li>
-<li>LWP::Simple</li>
-<li>File::Basename</li>
-<li>File::HomeDir</li>
-<li>App::cpanminus</li>
-<li>Net::SSLeay</li>
+<p><ul><li>strict</li></ul></p>
+<p><ul><li>warnings</li></ul></p>
+<p><ul><li>Term::ANSIColor</li></ul></p>
+<p><ul><li>Getopt::Std</li></ul></p>
+<p><ul><li>LWP::Simple</li></ul></p>
+<p><ul><li>File::Basename</li></ul></p>
+<p><ul><li>File::HomeDir</li></ul></p>
+<p><ul><li>App::cpanminus</li></ul></p>
+<p><ul><li>Net::SSLeay</li></ul></p>
 
 
 ## Installation
