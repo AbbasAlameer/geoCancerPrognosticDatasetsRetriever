@@ -140,6 +140,11 @@ Optional arguments:
   -h                    show help message and exit
 ```
 
+## Article
+For a complete description of geoCancerPrognosticDatasetsRetriever, information can be found in this peer-reviewed published article:
+
+> Abbas Alameer and Davide Chicco, <b>"geoCancerPrognosticDatasetsRetriever, a bioinformatics tool to easily identify cancer prognostic datasets on Gene Expression Omnibus (GEO)".</b> Bioinformatics, 2021. In press. 
+
 ## Copyright and License
 
 Copyright 2021 by Abbas Alameer, Kuwait University
