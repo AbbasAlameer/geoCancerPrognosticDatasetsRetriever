@@ -4,7 +4,7 @@ GEO Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer pro
 <p>Gene Expression Omnibus (GEO) Cancer Prognostic Datasets Retriever is a bioinformatics tool for cancer prognostic dataset retrieval from the GEO database. It requires a GeoDatasets input file listing all GSE dataset entries for a specific cancer (for example, bladder cancer), obtained as a download from the GEO database. This bioinformatics tool functions by applying two heuristic filters to examine individual GSE dataset entries listed in a GEO DataSets input file. The Prognostic Text filter flags for prognostic keywords (ex. “prognosis” or “survival”) used by clinical scientists and present in the title/abstract entries of a GSE dataset. If found, this tool retrieves those flagged datasets. Next, the second filter (Prognostic Signature filter) filters these datasets further by applying prognostic signature pattern matching (Perl regular expression signatures) to identify if the GSE dataset is a likely prognostic dataset.</p>
 
 ## geoCancerPrognosticDatasetsRetriever dependencies
-The dependencies (i.e. packages) used by geoCancerPrognosticDatasetsRetriever are:
+The dependencies (<i>i.e.</i> packages) used by geoCancerPrognosticDatasetsRetriever are:
 
 <p><ul><li>strict</li></ul></p>
 <p><ul><li>warnings</li></ul></p>
@@ -94,7 +94,7 @@ For specialized options, allowing more fine-grained user control, the following 
 
 -p <list of GPL platform codes>
 
-A list of GPL platform codes may be specified prior to execution, for expanding prognostic datasets retrieval for a particular cancer (i.e. bladder cancer). For example:
+A list of GPL platform codes may be specified prior to execution, for expanding prognostic datasets retrieval for a particular cancer (<i>i.e.</i> bladder cancer). For example:
 
 ```diff
 geoCancerPrognosticDatasetsRetriever -d "bladder cancer" -p "GPL570 GPL97 GPL96"
